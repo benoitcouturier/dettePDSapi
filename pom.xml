@@ -74,9 +74,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.14.1</version>
 				<configuration>
 					<testSourceDirectory>${basedir}/src/test/java/</testSourceDirectory>
-					<testClassesDirectory>${project.build.directory}/classes/</testClassesDirectory>
+					<testClassesDirectory>${project.build.directory}/test-classes/</testClassesDirectory>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
 				</configuration>
 			</plugin>
 			<plugin>
