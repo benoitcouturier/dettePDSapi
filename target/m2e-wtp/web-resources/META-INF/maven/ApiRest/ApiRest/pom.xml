@@ -70,11 +70,15 @@
 	</dependencies>
 
 	<build>
-
-		<sourceDirectory>src</sourceDirectory>
-		<testSourceDirectory>test</testSourceDirectory>
-
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<testSourceDirectory>${basedir}/src/test/java/</testSourceDirectory>
+					<testClassesDirectory>${project.build.directory}/classes/</testClassesDirectory>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>

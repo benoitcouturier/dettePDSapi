@@ -5,6 +5,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/main/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <property name="context-root" value="ApiRest"/>
         <property name="java-output-path" value="/api-rest-x-mall/target/classes"/>
     </wb-module>
