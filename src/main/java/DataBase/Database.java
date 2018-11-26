@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class Database {
 
 	/*Integration : 10.10.2.2*/
-		 private static final String URL = "jdbc:mysql://localhost:3306/databaseSql";// mysql 3306 postgre 5432 // changer ICI pour bdd
+	/* localhost:3306 */
+		 private static final String URL = "jdbc:mysql://10.10.2.2:3306/databaseSql";// mysql 3306 postgre 5432 // changer ICI pour bdd
 		 private static final String USER = "app";// fonctionne pas	
 		 private static final String PASSWORD = "1234"; // fonctionne pas
 		 private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
