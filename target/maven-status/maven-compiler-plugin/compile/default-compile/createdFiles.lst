@@ -1,7 +1,0 @@
-Entites\Personne.class
-DataBase\Database.class
-DAO\PersonneDAO.class
-Entites\Dossier.class
-RestGT\PersonneAPIRest.class
-RestGT\DossierApiRest.class
-DAO\DossierDAO.class
