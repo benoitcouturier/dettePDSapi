@@ -46,10 +46,10 @@ public class PersonneDAO {
 			connect = Database.getConnection();
 			String sql = "INSERT INTO Personne VALUES (?,?,?,?)";
 			ps = connect.prepareStatement(sql);
+			ps.setInt(i++,personne.getPersonneId());
+			ps.setInt(i++,personne.getAge());
 			ps.setString(i++,personne.getName());
 			ps.setString(i++,personne.getFirstname());
-			ps.setInt(i++,personne.getAge());
-			ps.setInt(i++,personne.getPersonneId());
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
