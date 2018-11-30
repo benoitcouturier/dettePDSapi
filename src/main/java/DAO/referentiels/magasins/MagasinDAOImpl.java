@@ -1,5 +1,7 @@
 package DAO.referentiels.magasins;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +28,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 			ps.setInt(i++,object.getIdEmplacement());
 			ps.setInt(i++,object.getIdType());
 			ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,10 +54,10 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 				m.setIdEmplacement(rs.getInt("idEmplacement"));
 				m.setIdType(rs.getInt("idType"));
 				m.setNom(rs.getString("nom"));
-				
+
 				magasins.add(m);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +80,33 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 	public Magasin find(Magasin object) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void creationUC() throws Exception {
+		Connection connect;
+		PreparedStatement ps ;
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			BufferedReader br = null;
+			FileReader fr = null;
+
+			fr = new FileReader("/ApiRest/sql/UC_ReferentielMagasins_Create.sql");
+			br = new BufferedReader(fr);
+
+			String sCurrentLine;
+			String sql = "";
+			while ((sCurrentLine = br.readLine()) != null) {
+				sql = sql + sCurrentLine + "\n\r";
+			}
+			
+			ps = connect.prepareStatement(sql);
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
