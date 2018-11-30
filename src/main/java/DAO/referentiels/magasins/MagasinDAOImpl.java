@@ -2,6 +2,7 @@ package DAO.referentiels.magasins;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -34,8 +35,31 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 
 	@Override
 	public ArrayList<Magasin> read() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		ArrayList<Magasin> magasins = new ArrayList<Magasin>();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select * from Magasins";
+			ps = connect.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Magasin m = new Magasin();
+				m.setDescription(rs.getString("description"));
+				m.setId(rs.getInt("id"));
+				m.setIdEmplacement(rs.getInt("idEmplacement"));
+				m.setIdType(rs.getInt("idType"));
+				m.setNom(rs.getString("nom"));
+				
+				magasins.add(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return magasins;
 	}
 
 	@Override
