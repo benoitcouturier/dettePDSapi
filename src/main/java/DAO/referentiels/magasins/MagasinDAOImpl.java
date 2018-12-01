@@ -22,7 +22,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "INSERT INTO Magasins VALUES (?,?,?)";
+			String sql = "INSERT INTO Magasins VALUES (NULL,?,?,?)";
 			ps = connect.prepareStatement(sql);
 			ps.setString(i++,object.getNom());
 			ps.setString(i++,object.getDescription());
