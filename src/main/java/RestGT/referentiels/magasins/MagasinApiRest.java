@@ -46,8 +46,6 @@ public class MagasinApiRest {
 		MagasinsDAO<Magasin> mDAO = new MagasinDAOImpl();
 		ArrayList<Magasin> mag = mDAO.read();
 		ObjectMapper mapper = new ObjectMapper();
-		
-		mDAO.creationUC();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
