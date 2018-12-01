@@ -1,8 +1,3 @@
-Drop table Emplacements;
-Drop table TypeMagasin;
-Drop table Magasins;
-Drop table EmplacementsMagasins;
-
 CREATE TABLE Emplacements (
 id INT PRIMARY KEY AUTO_INCREMENT,
 superficie INT,
