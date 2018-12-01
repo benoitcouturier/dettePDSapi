@@ -75,7 +75,28 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 
 	@Override
 	public void delete(Magasin object) throws Exception {
-		// TODO Auto-generated method stub
+		Connection connect;
+		PreparedStatement ps ;
+		PreparedStatement ps2 ;
+
+		int i =1;
+		connect = Database.getConnection();
+		String sql = "Delete from EmplacementMagasin where idMagasin=?";
+		ps = connect.prepareStatement(sql);
+		ps.setInt(i++,object.getId());
+		ps.executeUpdate();
+		connect.close();
+
+		try {
+			connect = Database.getConnection();
+			i=1;
+			String sql2 = "Delete from Magasins where id=?";
+			ps2 = connect.prepareStatement(sql2);
+			ps2.setInt(i++, object.getId());
+			ps2.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
