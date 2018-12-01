@@ -71,7 +71,7 @@ public class MagasinApiRest {
 			response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			log.fatal(e.getStackTrace());
+			return Response.status(500).entity(e).build();
 		}
 
 		return Response.status(200).entity(response).build();
