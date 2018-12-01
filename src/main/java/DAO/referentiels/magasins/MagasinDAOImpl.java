@@ -21,11 +21,10 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "INSERT INTO Magasins VALUES (?,?,?,?)";
+			String sql = "INSERT INTO Magasins VALUES (?,?,?)";
 			ps = connect.prepareStatement(sql);
 			ps.setString(i++,object.getNom());
 			ps.setString(i++,object.getDescription());
-			ps.setInt(i++,object.getIdEmplacement());
 			ps.setInt(i++,object.getIdType());
 			ps.executeUpdate();
 
@@ -51,7 +50,6 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 				Magasin m = new Magasin();
 				m.setDescription(rs.getString("description"));
 				m.setId(rs.getInt("id"));
-				m.setIdEmplacement(rs.getInt("idEmplacement"));
 				m.setIdType(rs.getInt("idType"));
 				m.setNom(rs.getString("nom"));
 

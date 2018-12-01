@@ -194,14 +194,15 @@ CREATE TABLE Magasins (
 INT id PRIMARY KEY AUTO_INCREMENT,
 nom VARCHAR(50),
 description VARCHAR(250),
-idEmplacement int,
 idType int,
 FOREIGN KEY (idType) REFERENCES TypeMagasin(id)
 );
 
 CREATE TABLE EmplacementMagasin (
 id INT PRIMARY KEY AUTO_INCREMENT,
+idMagasin INT,
 idEmplacement INT,
 FOREIGN KEY (idEmplacement) REFERENCES Emplacements(id)
+FOREIGN KEY (idMagasins) REFERENCES Magasins(id)
 );
 
