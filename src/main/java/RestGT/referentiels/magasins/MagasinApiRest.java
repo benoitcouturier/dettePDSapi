@@ -1,5 +1,5 @@
 package RestGT.referentiels.magasins;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
@@ -77,7 +77,26 @@ public class MagasinApiRest {
 		return Response.status(200).entity(response).build();
 	}
 
-
+	@GET
+	@Path("/find/${id}")
+	@Produces("application/json")
+	public Response find(@PathParam("id") int id) {
+		init();
+		log.info("ENTREE DANS LA METHODE GET EN GET");
+		String res = new String();
+		try {
+		MagasinsDAO<Magasin> mDAO = new MagasinDAOImpl();
+		Magasin m = new Magasin();
+		m.setId(id);
+		Magasin mag = mDAO.find(m);
+		ObjectMapper mapper = new ObjectMapper();
+			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.fatal(e.getStackTrace());
+		}
+		return Response.status(200).entity(res).build();
+	}
 }
 
 
