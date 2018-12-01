@@ -132,7 +132,7 @@ public class MagasinApiRest {
 		MagasinsDAO<Magasin> mDAO = new MagasinDAOImpl();
 		Magasin m = new Magasin();
 		m.setIdType(id);
-		Magasin mag = mDAO.rechercheType(m);
+		ArrayList<Magasin> mag = mDAO.rechercheType(m);
 		ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
 		} catch (Exception e) {
