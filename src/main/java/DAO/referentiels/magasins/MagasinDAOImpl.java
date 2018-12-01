@@ -28,15 +28,20 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		ps.executeUpdate();
 		connect.close();
 
-		connect = Database.getConnection();
-		object.setId(0);
-		System.out.println("This.selectMax : " + this.selectMax().getId());
-		i=1;
-		String sql2 = "INSERT INTO EmplacementMagasin VALUES (NULL,?,?)";
-		ps2 = connect.prepareStatement(sql2);
-		ps2.setInt(i++, this.selectMax().getId());
-		ps2.setInt(i++, object.getIdEmplacement());
-		ps2.executeUpdate();
+		try {
+			connect = Database.getConnection();
+			object.setId(0);
+			System.out.println("This.selectMax : " + this.selectMax().getId());
+			i=1;
+			String sql2 = "INSERT INTO EmplacementMagasin VALUES (NULL,?,?)";
+			ps2 = connect.prepareStatement(sql2);
+			ps2.setInt(i++, this.selectMax().getId());
+			ps2.setInt(i++, object.getIdEmplacement());
+			ps2.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 
