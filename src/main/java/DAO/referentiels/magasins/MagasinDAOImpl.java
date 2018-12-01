@@ -89,13 +89,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "Drop table EmplacementsMagasins IF EXISTS;\r\n" +
-					"Drop table Emplacements IF EXISTS;\r\n" + 
-					"Drop table Magasins IF EXISTS;\r\n" + 
-					"Drop table TypeMagasin IF EXISTS;\r\n" + 
-					
-					 
-					"\r\n" + 
+			String sql =
 					"CREATE TABLE Emplacements (\r\n" + 
 					"id INT PRIMARY KEY AUTO_INCREMENT,\r\n" + 
 					"superficie INT,\r\n" + 
