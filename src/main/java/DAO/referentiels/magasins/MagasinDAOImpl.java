@@ -1,7 +1,5 @@
 package DAO.referentiels.magasins;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +17,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		Connection connect;
 		PreparedStatement ps ;
 		PreparedStatement ps2 ;
-		try {
+		
 			int i =1;
 			connect = Database.getConnection();
 			String sql = "INSERT INTO Magasins VALUES (NULL,?,?,?)";
@@ -31,14 +29,12 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 
 			object.setId(0);
 			i=1;
-			sql = "INSERT INTO EmplacementMagasin VALUES (?,?)";
-			ps2 = connect.prepareStatement(sql);
+			String sql2 = "INSERT INTO EmplacementMagasin VALUES (NULL,?,?)";
+			ps2 = connect.prepareStatement(sql2);
 			ps2.setInt(i++, this.find(object).getId());
 			ps2.setInt(i++, object.getIdEmplacement());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+		
+	
 	}
 
 	@Override
