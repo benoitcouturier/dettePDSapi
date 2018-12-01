@@ -35,8 +35,8 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 			i=1;
 			String sql2 = "INSERT INTO EmplacementMagasin VALUES (NULL,?,?)";
 			ps2 = connect.prepareStatement(sql2);
-			ps2.setInt(i++, this.selectMax().getId());
 			ps2.setInt(i++, object.getIdEmplacement());
+			ps2.setInt(i++, this.selectMax().getId());
 			ps2.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
