@@ -114,11 +114,11 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		Magasin m = new Magasin();
 		try {
 			connect = Database.getConnection();
-			String sql = "Select Max(id) from Magasins";
+			String sql = "Select Max(id) as Max from Magasins";
 			ps = connect.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				m.setId(rs.getInt("id"));
+				m.setId(rs.getInt("Max"));
 			}
 
 		} catch (SQLException e) {
