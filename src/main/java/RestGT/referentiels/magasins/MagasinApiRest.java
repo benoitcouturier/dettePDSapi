@@ -78,7 +78,7 @@ public class MagasinApiRest {
 	}
 
 	@GET
-	@Path("/find/${id}")
+	@Path("/find/{id}")
 	@Produces("application/json")
 	public Response find(@PathParam("id") int id) {
 		init();
