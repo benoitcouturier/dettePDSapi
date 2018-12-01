@@ -18,6 +18,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 	public void create(Magasin object) throws Exception {
 		Connection connect;
 		PreparedStatement ps ;
+		PreparedStatement ps2 ;
 		try {
 			int i =1;
 			connect = Database.getConnection();
@@ -28,6 +29,12 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 			ps.setInt(i++,object.getIdType());
 			ps.executeUpdate();
 
+			object.setId(0);
+			i=1;
+			sql = "INSERT INTO EmplacementMagasin VALUES (?,?)";
+			ps2 = connect.prepareStatement(sql);
+			ps2.setInt(i++, this.find(object).getId());
+			ps2.setInt(i++, object.getIdEmplacement());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -76,8 +83,52 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 
 	@Override
 	public Magasin find(Magasin object) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		Magasin m = new Magasin();
+		
+		if(object.getId()!=0) {
+			try {
+				int i =1;
+				connect = Database.getConnection();
+				String sql = "Select * from Magasins where is = ?";
+				ps = connect.prepareStatement(sql);
+				ps.setInt(i++, object.getId());
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					m.setDescription(rs.getString("description"));
+					m.setId(rs.getInt("id"));
+					m.setIdType(rs.getInt("idType"));
+					m.setNom(rs.getString("nom"));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				int i =1;
+				connect = Database.getConnection();
+				String sql = "Select * from Magasins where nom = ?";
+				ps = connect.prepareStatement(sql);
+				ps.setString(i++, object.getNom());
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					m.setDescription(rs.getString("description"));
+					m.setId(rs.getInt("id"));
+					m.setIdType(rs.getInt("idType"));
+					m.setNom(rs.getString("nom"));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		return m;
 	}
 
 

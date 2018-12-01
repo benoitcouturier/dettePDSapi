@@ -64,7 +64,7 @@ public class MagasinApiRest {
 		String response = new String();
 		try {
 			Magasin p = mapper.readValue(mag, Magasin.class);
-			//mDAO.create(p);
+			mDAO.create(p);
 			String res = "Magsin saved :"+p.getNom()+" "+p.getDescription()+" "+p.getIdEmplacement()+" "+p.getIdType(); 
 			log.info(res);
 			response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
