@@ -36,7 +36,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		ps2 = connect.prepareStatement(sql2);
 		ps2.setInt(i++, this.selectMax().getId());
 		ps2.setInt(i++, object.getIdEmplacement());
-
+		ps2.executeUpdate();
 
 	}
 

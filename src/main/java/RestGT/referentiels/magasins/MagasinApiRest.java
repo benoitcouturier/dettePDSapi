@@ -62,6 +62,7 @@ public class MagasinApiRest {
 		MagasinsDAO<Magasin> mDAO = new MagasinDAOImpl();
 		ObjectMapper mapper = new ObjectMapper();
 		String response = new String();
+		System.out.println("ok");
 		try {
 			Magasin p = mapper.readValue(mag, Magasin.class);
 			mDAO.create(p);
