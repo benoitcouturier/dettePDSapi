@@ -17,24 +17,27 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		Connection connect;
 		PreparedStatement ps ;
 		PreparedStatement ps2 ;
-		
-			int i =1;
-			connect = Database.getConnection();
-			String sql = "INSERT INTO Magasins VALUES (NULL,?,?,?)";
-			ps = connect.prepareStatement(sql);
-			ps.setString(i++,object.getNom());
-			ps.setString(i++,object.getDescription());
-			ps.setInt(i++,object.getIdType());
-			ps.executeUpdate();
 
-			object.setId(0);
-			i=1;
-			String sql2 = "INSERT INTO EmplacementMagasin VALUES (NULL,?,?)";
-			ps2 = connect.prepareStatement(sql2);
-			ps2.setInt(i++, this.find(object).getId());
-			ps2.setInt(i++, object.getIdEmplacement());
-		
-	
+		int i =1;
+		connect = Database.getConnection();
+		String sql = "INSERT INTO Magasins VALUES (NULL,?,?,?)";
+		ps = connect.prepareStatement(sql);
+		ps.setString(i++,object.getNom());
+		ps.setString(i++,object.getDescription());
+		ps.setInt(i++,object.getIdType());
+		ps.executeUpdate();
+		connect.close();
+
+		connect = Database.getConnection();
+		object.setId(0);
+		System.out.println("This.selectMax : " + this.selectMax().getId());
+		i=1;
+		String sql2 = "INSERT INTO EmplacementMagasin VALUES (NULL,?,?)";
+		ps2 = connect.prepareStatement(sql2);
+		ps2.setInt(i++, this.selectMax().getId());
+		ps2.setInt(i++, object.getIdEmplacement());
+
+
 	}
 
 	@Override
@@ -83,48 +86,47 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		PreparedStatement ps ;
 		ResultSet rs;
 		Magasin m = new Magasin();
-		
-		if(object.getId()!=0) {
-			try {
-				int i =1;
-				connect = Database.getConnection();
-				String sql = "Select * from Magasins where id = ?";
-				ps = connect.prepareStatement(sql);
-				ps.setInt(i++, object.getId());
-				rs = ps.executeQuery();
-				while(rs.next()) {
-					m.setDescription(rs.getString("description"));
-					m.setId(rs.getInt("id"));
-					m.setIdType(rs.getInt("idType"));
-					m.setNom(rs.getString("nom"));
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select * from Magasins where id = ?";
+			ps = connect.prepareStatement(sql);
+			ps.setInt(i++, object.getId());
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				m.setDescription(rs.getString("description"));
+				m.setId(rs.getInt("id"));
+				m.setIdType(rs.getInt("idType"));
+				m.setNom(rs.getString("nom"));
 			}
-		}else {
-			System.out.println("Passage PAR LA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-			try {
-				int i =1;
-				connect = Database.getConnection();
-				String sql = "Select * from Magasins where nom = ?";
-				ps = connect.prepareStatement(sql);
-				ps.setString(i++, object.getNom());
-				rs = ps.executeQuery();
-				while(rs.next()) {
-					m.setDescription(rs.getString("description"));
-					m.setId(rs.getInt("id"));
-					m.setIdType(rs.getInt("idType"));
-					m.setNom(rs.getString("nom"));
-				}
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		
-		
-		
+		return m;
+	}
+	
+	@Override
+	public Magasin selectMax() throws Exception {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		Magasin m = new Magasin();
+		try {
+			connect = Database.getConnection();
+			String sql = "Select Max(id) from Magasins";
+			ps = connect.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				m.setDescription(rs.getString("description"));
+				m.setId(rs.getInt("id"));
+				m.setIdType(rs.getInt("idType"));
+				m.setNom(rs.getString("nom"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return m;
 	}
 
