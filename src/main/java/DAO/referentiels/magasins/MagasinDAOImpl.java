@@ -88,7 +88,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 			try {
 				int i =1;
 				connect = Database.getConnection();
-				String sql = "Select * from Magasins where is = ?";
+				String sql = "Select * from Magasins where id = ?";
 				ps = connect.prepareStatement(sql);
 				ps.setInt(i++, object.getId());
 				rs = ps.executeQuery();
@@ -103,6 +103,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 				e.printStackTrace();
 			}
 		}else {
+			System.out.println("Passage PAR LA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 			try {
 				int i =1;
 				connect = Database.getConnection();
