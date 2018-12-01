@@ -118,10 +118,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 			ps = connect.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				m.setDescription(rs.getString("description"));
 				m.setId(rs.getInt("id"));
-				m.setIdType(rs.getInt("idType"));
-				m.setNom(rs.getString("nom"));
 			}
 
 		} catch (SQLException e) {
