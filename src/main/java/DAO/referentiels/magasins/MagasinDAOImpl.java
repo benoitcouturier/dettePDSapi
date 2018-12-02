@@ -115,7 +115,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "Select * from Magasins where id = ?";
+			String sql = "Select M.description,M.id,M.nom,M.idType,EM.idEmplacement from Magasins M , EmplacementMagasin EM where M.id = EM.idMagasin and M.id=?";
 			ps = connect.prepareStatement(sql);
 			ps.setInt(i++, object.getId());
 			rs = ps.executeQuery();
@@ -124,6 +124,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 				m.setId(rs.getInt("id"));
 				m.setIdType(rs.getInt("idType"));
 				m.setNom(rs.getString("nom"));
+				m.setIdEmplacement(rs.getInt("idEmplacement"));
 			}
 
 		} catch (SQLException e) {
