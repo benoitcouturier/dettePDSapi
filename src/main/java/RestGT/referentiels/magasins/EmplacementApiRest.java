@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
@@ -18,7 +19,7 @@ import Entites.referentiels.magasins.Emplacement;
 
 @Path("/Emplacement")
 public class EmplacementApiRest {
-	
+
 	private static final Logger log = Logger.getLogger(EmplacementApiRest.class);
 
 	public static void init() {
@@ -27,7 +28,7 @@ public class EmplacementApiRest {
 			log.setLevel(Level.DEBUG);
 		}
 	}
-	
+
 	@GET
 	@Path("/emplacementsDisponibles")
 	@Produces("application/json")
@@ -36,9 +37,30 @@ public class EmplacementApiRest {
 		log.info("ENTREE DANS LA METHODE GET EN GET");
 		String res = new String();
 		try {
-		EmplacementDAO<Emplacement> eDAO = new EmplacementDAOImpl();
-		ArrayList<Emplacement> emp = eDAO.getEmplacementsDisponibles();
-		ObjectMapper mapper = new ObjectMapper();
+			EmplacementDAO<Emplacement> eDAO = new EmplacementDAOImpl();
+			ArrayList<Emplacement> emp = eDAO.getEmplacementsDisponibles();
+			ObjectMapper mapper = new ObjectMapper();
+			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(emp);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.fatal(e.getStackTrace());
+		}
+		return Response.status(200).entity(res).build();
+	}
+
+	@GET
+	@Path("/find/{id}")
+	@Produces("application/json")
+	public Response find(@PathParam("id") int id) {
+		init();
+		log.info("ENTREE DANS LA METHODE GET EN GET");
+		String res = new String();
+		try {
+			Emplacement e = new Emplacement();
+			e.setId(id);
+			EmplacementDAO<Emplacement> eDAO = new EmplacementDAOImpl();
+			Emplacement emp = eDAO.find(e);
+			ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(emp);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

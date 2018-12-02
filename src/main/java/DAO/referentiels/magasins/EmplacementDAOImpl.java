@@ -39,8 +39,27 @@ public class EmplacementDAOImpl implements EmplacementDAO<Emplacement> {
 
 	@Override
 	public Emplacement find(Emplacement object) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		Emplacement e = new Emplacement();
+		try {
+			connect = Database.getConnection();
+			String sql = "Select * from Emplacements where id =?";
+			ps = connect.prepareStatement(sql);
+			ps.setInt(1, object.getId());
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				e.setAile(rs.getString("aile"));
+				e.setId(rs.getInt("id"));
+				e.setImportance(rs.getInt("Importance"));
+				e.setSuperficie(rs.getInt("superficie"));
+			}
+
+		} catch (SQLException erreur) {
+			erreur.printStackTrace();
+		}
+		return e;
 	}
 
 	@Override
