@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
@@ -37,6 +38,27 @@ public class TypeMagasinApiRest {
 		try {
 		TypeMagasinDAO<TypeMagasin> tDAO = new TypeMagasinDAOImpl();
 		ArrayList<TypeMagasin> types = tDAO.read();
+		ObjectMapper mapper = new ObjectMapper();
+			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(types);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.fatal(e.getStackTrace());
+		}
+		return Response.status(200).entity(res).build();
+	}
+	
+	@GET
+	@Path("/find/{id}")
+	@Produces("application/json")
+	public Response get(@PathParam("id") int id) {
+		init();
+		log.info("ENTREE DANS LA METHODE GET EN GET");
+		String res = new String();
+		try {
+		TypeMagasinDAO<TypeMagasin> tDAO = new TypeMagasinDAOImpl();
+		TypeMagasin t = new TypeMagasin();
+		t.setId(id);
+		TypeMagasin types = tDAO.find(t);
 		ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(types);
 		} catch (Exception e) {

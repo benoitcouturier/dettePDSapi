@@ -56,8 +56,28 @@ public class TypeMagasinDAOImpl implements TypeMagasinDAO<TypeMagasin> {
 
 	@Override
 	public TypeMagasin find(TypeMagasin object) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		TypeMagasin t = new TypeMagasin();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select * from TypeMagasin where id= ?";
+			ps = connect.prepareStatement(sql);
+			ps.setInt(i++, object.getId());
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				
+				t.setId(rs.getInt("id"));
+				t.setType(rs.getString("type"));
+			
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return t;
 	}
 
 }
