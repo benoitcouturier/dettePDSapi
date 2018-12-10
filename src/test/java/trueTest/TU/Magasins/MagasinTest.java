@@ -15,7 +15,7 @@ public class MagasinTest {
 	
 	@Test
 	public void test() {
-		MagasinsDAO<Magasin> mDao = new MagasinDAOImpl();
+/*		MagasinsDAO<Magasin> mDao = new MagasinDAOImpl();
 		ArrayList<Magasin> array = new ArrayList<Magasin>();
 		
 		try {
@@ -57,7 +57,9 @@ public class MagasinTest {
 			e.printStackTrace();
 			assertTrue(false);
 			
-		}
+		}*/
+		
+		
 		
 	}
 }

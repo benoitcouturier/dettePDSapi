@@ -127,19 +127,10 @@ public class MagasinApiRest {
 	public Response rechercheType(@PathParam("id") int id) {
 		init();
 		log.info("ENTREE DANS LA METHODE GET EN GET");
-		String res = new String();
-		try {
-		MagasinsDAO<Magasin> mDAO = new MagasinDAOImpl();
-		Magasin m = new Magasin();
-		m.setIdType(id);
-		ArrayList<Magasin> mag = mDAO.rechercheType(m);
-		ObjectMapper mapper = new ObjectMapper();
-			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			log.fatal(e.getStackTrace());
-		}
-		return Response.status(200).entity(res).build();
+		
+		MagasinControlleur magCon = new MagasinControlleur();
+		return magCon.rechercherMagasin(id);
+		
 	}
 }
 
