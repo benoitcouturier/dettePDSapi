@@ -15,8 +15,15 @@ public class MagasinControlleur {
 	
 	public Response rechercherMagasin(int id) {
 
+		
 		String res = new String();
 		MagasinsDAO<Magasin> mDAO = new MagasinDAOImpl();
+		
+		// controle :
+		if(!mDAO.existType(id)) {
+			return Response.status(500).entity("Pas ce type dans la Base").build();
+		}
+		
 		Magasin m = new Magasin();
 		m.setIdType(id);
 		try {

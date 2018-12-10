@@ -9,4 +9,5 @@ public interface MagasinsDAO<T> extends CrudDAO<T>{
 
 	public Magasin selectMax() throws Exception;
 	public ArrayList<Magasin> rechercheType(Magasin object) throws Exception;
+	public boolean existType(int id);
 }

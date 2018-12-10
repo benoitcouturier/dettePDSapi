@@ -181,5 +181,27 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		return m;
 	}
 
+	@Override
+	public boolean existType(int id) {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		Boolean b = false;
+		try {
+			connect = Database.getConnection();
+			String sql = "Select * from TypeMagasin where id = ?";
+			ps = connect.prepareStatement(sql);
+			ps.setInt(1,id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				b = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+
 
 }
