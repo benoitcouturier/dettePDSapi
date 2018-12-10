@@ -1,92 +1,66 @@
 package Entites.portail.gererSonCompteClient;
 
-import java.util.Map;
 
 public class Customer_account {
- private Customer customer;
- private int Customer_phone;
- private int Age;
- private String Sex;
- private String State;
- private String city;
- private String adress;
- private String email;
- private Map<Integer,String> Customer_preferences;
+ private int customer_phone;
+ private int customer_age;
+ private String customer_sex;
+ private String customer_state;
+ private String customer_city;
+ private String customer_adress;
+ private String customer_email;
+ private String customer_preferences;
  private int id_profil;
  private int id_command;
  private int id_customer;
- 
- public Customer_account(Customer customer, int customer_phone, int age, String sex, String state, String city,
-		String adress, String email, Map<Integer, String> customer_preferences, int id_profil, int id_command,
-		int id_customer) {
-	super();
-	this.customer = customer;
-	Customer_phone = customer_phone;
-	Age = age;
-	Sex = sex;
-	State = state;
-	this.city = city;
-	this.adress = adress;
-	this.email = email;
-	Customer_preferences = customer_preferences;
-	this.id_profil = id_profil;
-	this.id_command = id_command;
-	this.id_customer = id_customer;
-}
- 
-public Customer getCustomer() {
-	return customer;
-}
-public void setCustomer(Customer customer) {
-	this.customer = customer;
-}
+
 public int getCustomer_phone() {
-	return Customer_phone;
+	return customer_phone;
 }
 public void setCustomer_phone(int customer_phone) {
-	Customer_phone = customer_phone;
+	this.customer_phone = customer_phone;
 }
-public int getAge() {
-	return Age;
+public int getCustomer_age() {
+	return customer_age;
 }
-public void setAge(int age) {
-	Age = age;
+public void setCustomer_age(int customer_age) {
+	this.customer_age = customer_age;
 }
-public String getSex() {
-	return Sex;
+public String getCustomer_sex() {
+	return customer_sex;
 }
-public void setSex(String sex) {
-	Sex = sex;
+public void setCustomer_sex(String customer_sex) {
+	this.customer_sex = customer_sex;
 }
-public String getState() {
-	return State;
+public String getCustomer_state() {
+	return customer_state;
 }
-public void setState(String state) {
-	State = state;
+public void setCustomer_state(String customer_state) {
+	this.customer_state = customer_state;
 }
-public String getCity() {
-	return city;
+public String getCustomer_city() {
+	return customer_city;
 }
-public void setCity(String city) {
-	this.city = city;
+public void setCustomer_city(String customer_city) {
+	this.customer_city = customer_city;
 }
-public String getAdress() {
-	return adress;
+public String getCustomer_adress() {
+	return customer_adress;
 }
-public void setAdress(String adress) {
-	this.adress = adress;
+public void setCustomer_adress(String customer_adress) {
+	this.customer_adress = customer_adress;
 }
-public String getEmail() {
-	return email;
+public String getCustomer_email() {
+	return customer_email;
 }
-public void setEmail(String email) {
-	this.email = email;
+public void setCustomer_email(String customer_email) {
+	this.customer_email = customer_email;
 }
-public Map<Integer, String> getCustomer_preferences() {
-	return Customer_preferences;
+public String getCustomer_preferences() {
+	return customer_preferences;
 }
-public void setCustomer_preferences(Map<Integer, String> customer_preferences) {
-	Customer_preferences = customer_preferences;
+public void setCustomer_preferences(String customer_preferences) {
+	this.customer_preferences = customer_preferences;
 }
 public int getId_profil() {
 	return id_profil;
@@ -106,6 +80,7 @@ public int getId_customer() {
 public void setId_customer(int id_customer) {
 	this.id_customer = id_customer;
 }
-
+ 
+ 
  
 }

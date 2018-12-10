@@ -1,52 +1,41 @@
 package Entites.portail.gererSonCompteClient;
 
 public class Person {
-	private int Person_id;
-	private String Person_name;
-	private String Person_fistname;
-	private String Person_login;
-	private String Person_password;
-	
-	public Person(int person_id,String person_name, String person_fistname, String person_login, String person_password) {
-		Person_id = person_id;
-		Person_name = person_name;
-		Person_fistname = person_fistname;
-		Person_login = person_login;
-		Person_password = person_password;
+	private int ID;
+	private String person_name;
+	private String person_fistname;
+	private String person_login;
+	private String person_password;
+	public int getID() {
+		return ID;
 	}
-	
-	public int getPerson_id() {
-		return Person_id;
+	public void setID(int iD) {
+		ID = iD;
 	}
-
-	public void setPerson_id(int person_id) {
-		Person_id = person_id;
-	}
-	
 	public String getPerson_name() {
-		return Person_name;
+		return person_name;
 	}
 	public void setPerson_name(String person_name) {
-		Person_name = person_name;
+		this.person_name = person_name;
 	}
-	
 	public String getPerson_fistname() {
-		return Person_fistname;
+		return person_fistname;
 	}
 	public void setPerson_fistname(String person_fistname) {
-		Person_fistname = person_fistname;
+		this.person_fistname = person_fistname;
 	}
 	public String getPerson_login() {
-		return Person_login;
+		return person_login;
 	}
 	public void setPerson_login(String person_login) {
-		Person_login = person_login;
+		this.person_login = person_login;
 	}
 	public String getPerson_password() {
-		return Person_password;
+		return person_password;
 	}
 	public void setPerson_password(String person_password) {
-		Person_password = person_password;
+		this.person_password = person_password;
 	}
+	
 	
 }
