@@ -1,7 +1,6 @@
 package DAO.referentiels.produitsVendus;
 
 import DataBase.Database;
-import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
 
 import java.sql.*;
