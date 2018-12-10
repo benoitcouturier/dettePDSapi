@@ -11,18 +11,33 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import DAO.referentiels.tarifsLivraison.Withdrawal_methodDAO;
 import Entites.referentiels.tarifsLivraison.Withdrawal_method;
+import RestGT.referentiels.magasins.MagasinApiRest;
 
 @Path("/WM")
 public class Withdrawalmethod_rest {
 		
+	private static final Logger log = Logger.getLogger(MagasinApiRest.class);
+
+	public static void init() {
+		if(log.getLevel() == null) {
+			BasicConfigurator.configure();
+			log.setLevel(Level.DEBUG);
+		}
+	}
+	
 		@POST
 		@Path("/add")
 		@Consumes(MediaType.APPLICATION_JSON)
 		public Response postMethod(String method) {
+			init();
+			System.out.println(method);
 			Withdrawal_methodDAO wmDAO = new Withdrawal_methodDAO();
 			ObjectMapper mapper = new ObjectMapper();
 			String response = new String();
@@ -32,6 +47,7 @@ public class Withdrawalmethod_rest {
 				wmDAO.create(wm); 
 				response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(wm);
 			} catch (Exception e) {
+				e.printStackTrace();
 				return Response.status(500).entity(e).build();
 			}
 			return Response.status(200).entity(response).build();
