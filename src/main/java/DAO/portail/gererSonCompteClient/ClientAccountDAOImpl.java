@@ -21,7 +21,7 @@ public class ClientAccountDAOImpl implements ClientAccountDAO<Customer_account> 
 		try{
 			int i =1;
 			conn = Database.getConnection();
-			String sql = "INSERT INTO customer_account VALUES(NULL,?,?,?,?,?,?,?,?,1,1,1)";
+			String sql = "INSERT INTO Customer_account VALUES(NULL,?,?,?,?,?,?,?,?,1,1,1)";
 			state = conn.prepareStatement(sql);
 			state.setInt(i++,object.getCustomer_phone());
 			state.setInt(i++, object.getCustomer_age());

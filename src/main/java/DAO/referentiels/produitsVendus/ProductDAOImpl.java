@@ -13,7 +13,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 		PreparedStatement myStmt = null;
 			// connect to the bdd
 			Connection myConn = Database.getConnection();
-			myStmt = myConn.prepareStatement("insert into product (product_id,product_name,product_price,product_quantity,store_id,prods_id,prodt_id) values (NULL,?,?,?,?,?,?)"); // request
+			myStmt = myConn.prepareStatement("insert into Product (product_id,product_name,product_price,product_quantity,store_id,prods_id,prodt_id) values (NULL,?,?,?,?,?,?)"); // request
 			myStmt.setString(1, object.getPname());
 			myStmt.setFloat(2, object.getPrice());
 			myStmt.setInt(3, object.getPqte());
@@ -29,7 +29,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 		PreparedStatement myStmt = null;
 		// connect to the bdd
 			Connection myConn = Database.getConnection();
-			myStmt = myConn.prepareStatement("delete From product where product_id=?");
+			myStmt = myConn.prepareStatement("delete From Product where product_id=?");
 			myStmt.setInt(1, object.getPid());
 			myStmt.executeUpdate();
 			myConn.close();
@@ -41,7 +41,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
         PreparedStatement myStmt=null;
         //connect to the bdd
         Connection myConn = Database.getConnection();
-        myStmt = myConn.prepareStatement("update product set product_name=? ,product_price=?, product_quantity=?, store_id=?, prods_id=?, prodt_id=?  where product_id=? ");
+        myStmt = myConn.prepareStatement("update Product set product_name=? ,product_price=?, product_quantity=?, store_id=?, prods_id=?, prodt_id=?  where product_id=? ");
         //value entered in the order of '?' in the request
         myStmt.setString(1, object.getPname());
         myStmt.setDouble(2, object.getPrice());
@@ -64,7 +64,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 			try {
 				int i =1;
 				connect = Database.getConnection();
-				String sql = "Select * from produit where prods_id=1 and id=?";
+				String sql = "Select * from Product where prods_id=1 and id=?";
 				ps = connect.prepareStatement(sql);
 				ps.setInt(i++, object.getPid());
 				myRs = ps.executeQuery();
@@ -93,7 +93,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
          //request
         Statement myStmt = myConn.createStatement();
         //result of request
-        ResultSet myRs = myStmt.executeQuery("select * from product where prods_id=1");
+        ResultSet myRs = myStmt.executeQuery("select * from Product where prods_id=1");
         //loop for add product
         while (myRs.next()) {
 			Product p = new Product();
