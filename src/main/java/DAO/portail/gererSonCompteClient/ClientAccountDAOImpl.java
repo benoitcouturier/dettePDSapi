@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import DAO.portail.gererSonCompteClient.ClientAccountDAO;
-import DataBase.Database;
+
 import Entites.portail.gererSonCompteClient.Customer_account;
 
 public class ClientAccountDAOImpl implements ClientAccountDAO<Customer_account> {
@@ -21,18 +20,21 @@ public class ClientAccountDAOImpl implements ClientAccountDAO<Customer_account> 
 		try{
 			int i =1;
 			conn = Database.getConnection();
-			String sql = "INSERT INTO customer_account VALUES(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO customer_account VALUES(NULL,?,?,?,?,?,?,?,?,1,1,1)";
 			state = conn.prepareStatement(sql);
 			state.setInt(i++,object.getCustomer_phone());
-			state.setString(i++, object.getAdress());
-			state.setString(i++, object.getCity());
-			state.setString(i++, object.getState());
-			state.setString(i++, object.getEmail());
-			state.setString(i++, object.getSex());
-			state.setInt(i++, object.getAge());
+			state.setInt(i++, object.getCustomer_age());
+			state.setString(i++, object.getCustomer_sex());
+			state.setString(i++, object.getCustomer_state());
+			state.setString(i++, object.getCustomer_city());
+			state.setString(i++, object.getCustomer_adress());
+			state.setString(i++, object.getCustomer_email());
+			state.setString(i++, object.getCustomer_preferences());
+			
+			state.executeUpdate();
 		} catch(SQLException e){
 			e.printStackTrace();
-		}
+		}	
 
 		
 	}
