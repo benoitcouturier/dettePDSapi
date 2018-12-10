@@ -6,16 +6,6 @@ public class Product {
 	private int pid,pqte,sid,psid,ptid;
 	private float price;
 	
-	public Product(int pid,String pname, float price, int pqte, int sid, int psid, int ptid) {
-		this.pid = pid;
-		this.pname = pname;
-		this.price=price;
-		this.pqte = pqte;
-		this.sid = sid;
-		this.psid = psid;
-		this.ptid = ptid;
-	}
-
 	public float getPrice() {
 		return price;
 	}
