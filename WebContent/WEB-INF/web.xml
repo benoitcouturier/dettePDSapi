@@ -52,6 +52,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>jersey-servlet</servlet-name>
-		<url-pattern>/RestGT/*</url-pattern>
+		<url-pattern>/RestGT/*</url-pattern> <!-- s'aligner sur Rest ici -->
 	</servlet-mapping>
 </web-app>

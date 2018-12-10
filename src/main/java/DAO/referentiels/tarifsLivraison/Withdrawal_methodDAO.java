@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import DAO.CrudDAO;
 import DataBase.Database;
 import Entites.referentiels.tarifsLivraison.Withdrawal_method;
-import Entites.referentiels.tarifsLivraison.Withdrawal_price;
 
 public class Withdrawal_methodDAO implements CrudDAO <Withdrawal_method> {
 public Connection connect;
@@ -20,10 +19,11 @@ public Connection connect;
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "INSERT INTO Withdrawal_method VALUES (DEFAULT,?,?)";
+			String sql = "INSERT INTO Withdrawal_method VALUES (DEFAULT,?,?,?)";
 			ps = connect.prepareStatement(sql);
 			ps.setString(i++,wm.getWM_name());
-			ps.setInt(i++,wm.getWP().getWP_id());
+			ps.setInt(i++,wm.getWM_distance());
+			ps.setInt(i++,wm.getWM_price());
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -40,19 +40,16 @@ public Connection connect;
 			int i = 1;
 			
 			connect = Database.getConnection();
-			String sql = "SELECT * FROM Withdrawal_method WM, Withdrawal_price WP where WM.WP_id = WP.WP.WP_id and WM.WM_id = ?";
+			String sql = "SELECT * FROM Withdrawal_method where WM_id = ?";
 			ps = connect.prepareStatement(sql);
 			ps.setInt(i, wm.getWM_id());
 			rs = ps.executeQuery(sql);
 
 			if(rs.first()) {
-				Withdrawal_price wp = new Withdrawal_price();
-				wp.setWP_id(rs.getInt("WP_id"));
-				wp.setWP_distance(rs.getInt("WP_distance"));
-				wp.setWP_price(rs.getInt("WP_price"));
-				
+
+				wm.setWM_distance(rs.getInt("WP_distance"));
+				wm.setWM_price(rs.getInt("WP_price"));
 				wm.setWM_name(rs.getString("WM_name"));
-				wm.setWP(wp);
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -65,9 +62,11 @@ public Connection connect;
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "UPDATE Withdrawal_method SET WM_name = ? WHERE WM_id = ?";
+			String sql = "UPDATE Withdrawal_method SET WM_name = ?, WM_distance = ?, WM_price = ? WHERE WM_id = ?";
 			ps = connect.prepareStatement(sql);
 			ps.setString(i++,wm.getWM_name());
+			ps.setInt(i++,wm.getWM_distance());
+			ps.setInt(i++,wm.getWM_price());
 			ps.setInt(i++,j);
 			ps.executeUpdate();
 			
@@ -105,18 +104,16 @@ public Connection connect;
 			connect = Database.getConnection();
 
 			st = this.connect.createStatement();
-			String sql = "SELECT * FROM Withdrawal_price";
+			String sql = "SELECT * FROM Withdrawal_method";
 			rs = st.executeQuery(sql);
 
 			while(rs.next()) {
-				Withdrawal_price wp = new Withdrawal_price();
-				Withdrawal_method wm = new Withdrawal_method();
-				wp.setWP_id(rs.getInt("WP_id"));
-				wp.setWP_distance(rs.getInt("WP_distance"));
-				wp.setWP_price(rs.getInt("WP_price"));
 				
+				Withdrawal_method wm = new Withdrawal_method();
+				wm.setWM_id(rs.getInt("WM_id"));
+				wm.setWM_distance(rs.getInt("WM_distance"));
+				wm.setWM_price(rs.getInt("WM_price"));
 				wm.setWM_name(rs.getString("WM_name"));
-				wm.setWP(wp);
 				
 				liste.add(wm);  
 			}	

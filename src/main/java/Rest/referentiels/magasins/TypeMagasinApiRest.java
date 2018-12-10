@@ -1,4 +1,4 @@
-package RestGT.referentiels.magasins;
+package Rest.referentiels.magasins;
 
 import java.util.ArrayList;
 
