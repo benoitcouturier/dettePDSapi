@@ -10,8 +10,8 @@ public class Database {
 	/*Integration : 10.10.2.2*/
 	/* localhost:3306 */
 		 private static final String URL = "jdbc:mysql://10.10.2.2:3306/testxmall";// mysql 3306 postgre 5432 // changer ICI pour bdd
-		 private static final String USER = "root";// fonctionne pas	
-		 private static final String PASSWORD = ""; // fonctionne pas
+		 private static final String USER = "APP";// fonctionne pas	
+		 private static final String PASSWORD = "123"; // fonctionne pas
 		 private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 		 
 		 static {
