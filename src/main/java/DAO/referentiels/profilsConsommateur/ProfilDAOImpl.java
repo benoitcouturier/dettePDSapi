@@ -4,6 +4,8 @@ import Entites.referentiels.profilsConsommateur.Profil;
 import java.sql.*;
 import java.util.ArrayList;
 
+import DataBase.Database;
+
 public class ProfilDAOImpl implements ProfilDAO<Profil> {
     @Override
     public void create(Profil profil) throws Exception {

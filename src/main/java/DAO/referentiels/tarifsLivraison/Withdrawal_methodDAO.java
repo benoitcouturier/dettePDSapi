@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import DAO.CrudDAO;
+import DataBase.Database;
 import Entites.referentiels.tarifsLivraison.Withdrawal_method;
 
 public class Withdrawal_methodDAO implements CrudDAO <Withdrawal_method> {

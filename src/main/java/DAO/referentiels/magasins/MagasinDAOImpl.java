@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import DataBase.Database;
 import Entites.referentiels.magasins.Magasin;
 
 public class MagasinDAOImpl implements MagasinsDAO<Magasin> {

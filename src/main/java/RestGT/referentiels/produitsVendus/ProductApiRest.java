@@ -67,7 +67,7 @@ public class ProductApiRest {
 		try {
 			Product prod = mapper.readValue(p, Product.class);
 			pDAO.create(prod);
-			String res = "Le produit ajouté est :"+prod.getPname()+" "+prod.getPrice()+" "+prod.getPqte()+" "+prod.getSid()+" "+prod.getPsid()+" "+prod.getPtid(); 
+			String res = "Le produit ajoute est :"+prod.getPname()+" "+prod.getPrice()+" "+prod.getPqte()+" "+prod.getSid()+" "+prod.getPsid()+" "+prod.getPtid(); 
 			log.info(res);
 			response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
 		} catch (Exception e) {
@@ -91,7 +91,7 @@ public class ProductApiRest {
 		try {
 			Product prod = mapper.readValue(p, Product.class);
 			pDAO.delete(prod);
-			String res = "Le produit supprimé est :"+prod.getPid(); 
+			String res = "Le produit supprime est :"+prod.getPid(); 
 			log.info(res);
 			response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
 		} catch (Exception e) {
