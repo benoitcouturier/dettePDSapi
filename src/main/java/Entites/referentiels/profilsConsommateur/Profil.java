@@ -42,29 +42,17 @@ public class Profil {
             this.sexClient = sexClient;
         }
 
-        public int getVolumeAchat() {
-            return volumeAchat;
-        }
+        public int getPurchaseVolume() { return purchaseVolume; }
 
-        public void setVolumeAchat(int volumeAchat) {
-            this.volumeAchat = volumeAchat;
-        }
+        public void setPurchaseVolume(int purchaseVolume) { this.purchaseVolume = purchaseVolume; }
 
         private int profilT_id;
         private String profilT_name;
         private String product_Type;
         private int ageClient;
         private String sexClient;
-        private int volumeAchat;
+        private int purchaseVolume;
 
-
-        public Profil(int profilT_id, String profilT_name, String product_Type, int ageClient, String sexClient, int volumeAchat) {
-            this.profilT_id = profilT_id;
-            this.profilT_name = profilT_name;
-            this.product_Type = product_Type;
-            this.ageClient = ageClient;
-            this.sexClient = sexClient;
-            this.volumeAchat = volumeAchat;
-        }
+        
 
 }
