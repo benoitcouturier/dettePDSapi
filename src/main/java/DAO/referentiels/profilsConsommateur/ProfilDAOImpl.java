@@ -1,5 +1,4 @@
 package DAO.referentiels.profilsConsommateur;
-import DataBase.Database;
 import Entites.referentiels.profilsConsommateur.Profil;
 
 import java.sql.*;
@@ -15,14 +14,13 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
         try {
 
             connect= Database.getConnection();
-            String sql = "INSERT INTO Profil_type VALUES(?,?,?,?,?,?)";
+            String sql = "INSERT INTO profil_type VALUES(NULL,?,?,?,?,?)";
             st = connect.prepareStatement(sql);
-            st.setInt(1,profil.getProfilT_id());
-            st.setString(2,profil.getProfilT_name());
-            st.setString(3, profil.getProduct_Type());
-            st.setInt(4, profil.getAgeClient());
-            st.setString(5, profil.getSexClient());
-            st.setInt(6, profil.getVolumeAchat());
+            st.setString(1,profil.getProfilT_name());
+            st.setString(2, profil.getProduct_Type());
+            st.setInt(3, profil.getAgeClient());
+            st.setString(4, profil.getSexClient());
+            st.setInt(5, profil.getPurchaseVolume());
             st.executeUpdate();
 
 

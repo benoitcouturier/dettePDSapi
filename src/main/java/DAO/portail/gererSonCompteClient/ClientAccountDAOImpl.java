@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import DAO.portail.gererSonCompteClient.ClientAccountDAO;
-import DataBase.Database;
+
 import Entites.portail.gererSonCompteClient.Customer_account;
 
 public class ClientAccountDAOImpl implements ClientAccountDAO<Customer_account> {
