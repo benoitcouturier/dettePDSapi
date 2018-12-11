@@ -129,8 +129,8 @@ public class MagasinApiRest {
 		log.info("ENTREE DANS LA METHODE GET EN GET");
 		
 		MagasinControlleur magCon = new MagasinControlleur();
-		return magCon.rechercherMagasin(id);
-		
+		CallMagasin control = new CallMagasinImpl();
+		return magCon.rechercherMagasinType(id,control);
 	}
 }
 

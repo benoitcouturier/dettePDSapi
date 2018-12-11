@@ -133,7 +133,7 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 	}
 	
 	@Override
-	public ArrayList<Magasin> rechercheType(Magasin object) throws Exception {
+	public ArrayList<Magasin> rechercheType(Magasin object)  {
 		Connection connect;
 		PreparedStatement ps ;
 		ResultSet rs;

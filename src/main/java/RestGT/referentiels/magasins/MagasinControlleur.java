@@ -13,21 +13,22 @@ import Entites.referentiels.magasins.Magasin;
 public class MagasinControlleur {
 
 	
-	public Response rechercherMagasin(int id) {
+	public Response rechercherMagasinType(int id, CallMagasin control) {
 
 		
 		String res = new String();
-		MagasinsDAO<Magasin> mDAO = new MagasinDAOImpl();
-		
 		// controle :
-		if(!mDAO.existType(id)) {
-			return Response.status(500).entity("Pas ce type dans la Base").build();
+		if(!control.existType(id)) {
+			return Response.status(500).entity("Pas en Base").build();
 		}
 		
 		Magasin m = new Magasin();
 		m.setIdType(id);
 		try {
-			ArrayList<Magasin> mag = mDAO.rechercheType(m);
+			ArrayList<Magasin> mag = control.rechercheType(m);
+			if(mag == null) {
+				return Response.status(201).entity("Pas de Resultat pour cette categorie").build();
+			}
 			ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
 			return Response.status(200).entity(res).build();
