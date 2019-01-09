@@ -65,22 +65,22 @@ public class MagasinService {
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
 			return Response.status(200).entity(res).build();
 		} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 
-		return Response.status(500).entity(e).build();
-	}
-
-
-}
-public boolean controle(String nom){
-	String caractersInterdits="&й'(-и_за)=~#{[|`\\^@]}%щЈ$µ*<>\"§!:/.?,;";
-	for (int i=0;i>caractersInterdits.length();i++){
-		String caractere =""+caractersInterdits.charAt(i);
-		if (nom.contains(caractere)){
-			return false;
+			return Response.status(500).entity(e).build();
 		}
+
+
 	}
-	return true;
-}
+	public boolean controle(String nom){
+		String caractersInterdits="&пїЅ'(-пїЅ_пїЅпїЅ)=~#{[|`\\^@]}%пїЅпїЅ$пїЅ*<>\"пїЅ!:/.?,;";
+		for (int i=0;i>caractersInterdits.length();i++){
+			String caractere =""+caractersInterdits.charAt(i);
+			if (nom.contains(caractere)){
+				return false;
+			}
+		}
+		return true;
+	}
 }
