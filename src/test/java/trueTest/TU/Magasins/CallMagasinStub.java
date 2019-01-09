@@ -1,8 +1,9 @@
-package RestGT.referentiels.magasins;
+package trueTest.TU.Magasins;
 
 import java.util.ArrayList;
 
 import Entites.referentiels.magasins.Magasin;
+import RestGT.referentiels.magasins.CallMagasin;
 
 public class CallMagasinStub implements CallMagasin {
 

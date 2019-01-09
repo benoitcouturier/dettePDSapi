@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import RestGT.referentiels.magasins.CallMagasin;
 import RestGT.referentiels.magasins.CallMagasinImpl;
-import RestGT.referentiels.magasins.CallMagasinStub;
 import RestGT.referentiels.magasins.MagasinApiRest;
 import RestGT.referentiels.magasins.MagasinControlleur;
 
