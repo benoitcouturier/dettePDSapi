@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -92,9 +93,9 @@ public class Withdrawalmethod_rest {
 		}
 		
 		@GET
-		@Path("/find")
+		@Path("/find/{name}")
 		@Produces("application/json")
-		public Response getWMByName(String name) {
+		public Response getWMByName(@PathParam("name") String name) {
 			Withdrawal_methodDAO wmDAO = new Withdrawal_methodDAO();
 			ArrayList<Withdrawal_method> wm = wmDAO.find(name);
 			System.out.println(wm.size());

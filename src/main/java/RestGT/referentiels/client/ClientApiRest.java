@@ -29,7 +29,7 @@ import Entites.referentiels.produitsVendus.Product;
 @Path("/Client")
 public class ClientApiRest {
 
-	
+
 	private static final Logger log = Logger.getLogger(ClientApiRest.class);
 
 	public static void init() {
@@ -52,11 +52,11 @@ public class ClientApiRest {
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response post(String client) {
-		
+
 		log.info("ENTREE DANS LA METHODE ADD EN POST");
 		System.out.println(client);
 		ClientAccountDAO<Customer_account> cDAO = new ClientAccountDAOImpl();
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		String response = new String();
 		System.out.println(client);
@@ -81,17 +81,17 @@ public class ClientApiRest {
 	@Produces("application/json")
 	public Response find(@PathParam("sex") String customer_sex, @PathParam("location") int customer_location, @PathParam("notification") int customer_notification) {
 		init();
-		log.info("Début méthode Search en @GET");
+		log.info("Dï¿½but mï¿½thode Search en @GET");
 		String res = new String();
 		try {
-		NotifClientDAO<Customer_account> cDAO = new NotifClientDAOImpl();
-		Customer_account c = new Customer_account();
-		c.setCustomer_sex(customer_sex);
-		c.setCustomer_location(customer_location);
-		c.setCustomer_notification(customer_notification);
-		
-		Customer_account ca = cDAO.find(c);
-		ObjectMapper mapper = new ObjectMapper();
+			NotifClientDAO<Customer_account> cDAO = new NotifClientDAOImpl();
+			Customer_account c = new Customer_account();
+			c.setCustomer_sex(customer_sex);
+			c.setCustomer_location(customer_location);
+			c.setCustomer_notification(customer_notification);
+
+			Customer_account ca = cDAO.find(c);
+			ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(ca);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
