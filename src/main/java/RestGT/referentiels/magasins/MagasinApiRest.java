@@ -132,6 +132,18 @@ public class MagasinApiRest {
 		CallMagasin control = new CallMagasinImpl();
 		return magCon.rechercherMagasinType(id,control);
 	}
+	
+	@GET
+	@Path("/rechercheNom/{nom}")
+	@Produces("application/json")
+	public Response rechercheNom(@PathParam("nom") String nom) {
+		init();
+		log.info("ENTREE DANS LA METHODE GET EN GET");
+		
+		MagasinControlleur magCon = new MagasinControlleur();
+		CallMagasin control = new CallMagasinImpl();
+		return magCon.rechercherMagasinNom(nom,control);
+	}
 }
 
 

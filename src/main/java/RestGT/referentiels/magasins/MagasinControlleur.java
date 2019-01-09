@@ -42,4 +42,30 @@ public class MagasinControlleur {
 		
 		
 	}
+	
+	public Response rechercherMagasinNom(String nom, CallMagasin control) {
+
+		
+		String res = new String();
+				
+		Magasin m = new Magasin();
+		m.setNom(nom);
+		try {
+			ArrayList<Magasin> mag = control.rechercheNom(m);
+			if(mag.isEmpty()) {
+				return Response.status(201).entity("Pas de Resultat pour cette categorie").build();
+			}
+			ObjectMapper mapper = new ObjectMapper();
+			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
+			return Response.status(200).entity(res).build();
+	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			return Response.status(500).entity(e).build();
+		}
+		
+		
+	}
 }

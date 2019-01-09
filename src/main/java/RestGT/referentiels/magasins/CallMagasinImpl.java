@@ -20,5 +20,10 @@ public class CallMagasinImpl implements CallMagasin {
 		MagasinsDAO<Magasin> magasinDAO = new MagasinDAOImpl();
 		return magasinDAO.rechercheType(m);
 	}
-	 
+	
+	@Override
+	public ArrayList<Magasin> rechercheNom(Magasin m) {
+		MagasinsDAO<Magasin> magasinDAO = new MagasinDAOImpl();
+		return magasinDAO.rechercheNom(m);
+	}
 }

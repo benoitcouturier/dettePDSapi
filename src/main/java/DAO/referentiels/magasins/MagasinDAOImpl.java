@@ -202,6 +202,34 @@ public class MagasinDAOImpl implements MagasinsDAO<Magasin> {
 		}
 		return b;
 	}
+	
+	@Override
+	public ArrayList<Magasin> rechercheNom(Magasin object)  {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		ArrayList<Magasin> mag = new ArrayList<Magasin>();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select * from Magasins where nom like ?";
+			ps = connect.prepareStatement(sql);
+			ps.setString(i++, (object.getNom()+"%"));
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Magasin m = new Magasin();
+				m.setDescription(rs.getString("description"));
+				m.setId(rs.getInt("id"));
+				m.setIdType(rs.getInt("idType"));
+				m.setNom(rs.getString("nom"));
+				mag.add(m);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return mag;
+	}
 
 
 }
