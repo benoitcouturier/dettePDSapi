@@ -37,25 +37,17 @@ public class ProfilApiRest {
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response post(String profil) {
+    public Response create(String profil) {
         log.info("Methode POST");
         ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
         ObjectMapper mapper = new ObjectMapper();
-        String response = new String();
-        System.out.println("ok");
-        try {
+        try{
             Profil p = mapper.readValue(profil, Profil.class);
-            pDAO.create(p);
-            String res = "Profil saved :";
-            log.info(response);
-            response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            ProfilService service = new ProfilService();
+            return service.create(p,pDAO);
+        }catch (Exception e){
             return Response.status(500).entity(e).build();
         }
-
-        return Response.status(200).entity(response).build();
     }
 
 
