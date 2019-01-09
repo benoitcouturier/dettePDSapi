@@ -71,5 +71,43 @@ public class Withdrawalmethod_rest {
 			}
 			return Response.status(200).entity(res).build();
 		}
+		
+		@GET
+		@Path("/allNames")
+		@Produces("application/json")
+		public Response getAllNames() {
+			Withdrawal_methodDAO wmDAO = new Withdrawal_methodDAO();
+			ArrayList<String> wmNames = wmDAO.findNames();
+			System.out.println(wmNames.size());
+			ObjectMapper mapper = new ObjectMapper();
+			String res = new String();
+			System.out.println("[FINDING ALL WITHDRAWAL METHODS NAMES...]");
+			try {
+				res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(wmNames);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return Response.status(200).entity(res).build();
+		}
+		
+		@GET
+		@Path("/find")
+		@Produces("application/json")
+		public Response getWMByName(String name) {
+			Withdrawal_methodDAO wmDAO = new Withdrawal_methodDAO();
+			ArrayList<Withdrawal_method> wm = wmDAO.find(name);
+			System.out.println(wm.size());
+			ObjectMapper mapper = new ObjectMapper();
+			String res = new String();
+			System.out.println("[FINDING WITHDRAWAL METHODS BY NAME...]");
+			try {
+				res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(wm);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return Response.status(200).entity(res).build();
+		}
 	}
 
