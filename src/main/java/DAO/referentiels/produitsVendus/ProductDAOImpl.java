@@ -1,6 +1,7 @@
 package DAO.referentiels.produitsVendus;
 
 import DataBase.Database;
+import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
 
 import java.sql.*;
@@ -109,5 +110,29 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 }
         // return list of product
         return listProduct;
+	}
+	
+	public ArrayList<Product> findname(Product object)  {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		ArrayList<Product> prod = new ArrayList<Product>();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select * from Product where product_name like ?";
+			ps = connect.prepareStatement(sql);
+			ps.setString(i++, (object.getPname()+"%"));
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Product p = new Product();
+				p.setPname(rs.getString("product_name"));
+				prod.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return prod;
 	}
 }
