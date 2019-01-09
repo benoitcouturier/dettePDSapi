@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import DAO.referentiels.magasins.MagasinDAOImpl;
 import DAO.referentiels.magasins.MagasinsDAO;
 import Entites.referentiels.magasins.Magasin;
+import Entites.referentiels.magasins.RechercheVide;
 
 public class MagasinControlleur {
 
@@ -27,7 +28,9 @@ public class MagasinControlleur {
 		try {
 			ArrayList<Magasin> mag = control.rechercheType(m);
 			if(mag.isEmpty()) {
-				return Response.status(201).entity("[ \"msg\" : \"Pas de Resultat pour cette categorie\"]").build();
+				RechercheVide erreur = new RechercheVide();
+				erreur.setNom("Pas de Resultat pour cette categorie");
+				return Response.status(201).entity(erreur).build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
@@ -53,7 +56,9 @@ public class MagasinControlleur {
 		try {
 			ArrayList<Magasin> mag = control.rechercheNom(m);
 			if(mag.isEmpty()) {
-				return Response.status(201).entity("[ \"msg\" : \"Pas de Resultat pour cette categorie\"]").build();
+				RechercheVide erreur = new RechercheVide();
+				erreur.setNom("Pas de Resultat pour cette categorie");
+				return Response.status(201).entity(erreur).build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
