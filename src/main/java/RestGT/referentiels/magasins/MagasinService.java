@@ -53,7 +53,7 @@ public class MagasinService {
 			ArrayList<Magasin> mag = dao.rechercheNom(m);
 			if(mag.isEmpty()) {
 				RechercheVide erreur = new RechercheVide();
-				erreur.setNom("Pas de resultats pour cette categorie");
+				erreur.setNom("Pas de resultats pour ce nom");
 				return Response.status(201).entity(erreur).build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
