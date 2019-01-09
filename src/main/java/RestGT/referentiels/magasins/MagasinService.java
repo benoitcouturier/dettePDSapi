@@ -74,7 +74,7 @@ public class MagasinService {
 
 	}
 	public boolean controle(String nom){
-		String caractersInterdits="&�'(-�_��)=~#{[|`\\^@]}%��$�*<>\"�!:/.?,;";
+		String caractersInterdits="&'(-_)=~#{[|`\\^@]}%$*<>\"!:/.?,;";
 		for (int i=0;i>caractersInterdits.length();i++){
 			String caractere =""+caractersInterdits.charAt(i);
 			if (nom.contains(caractere)){
