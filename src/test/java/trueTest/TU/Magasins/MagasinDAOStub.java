@@ -2,13 +2,14 @@ package trueTest.TU.Magasins;
 
 import java.util.ArrayList;
 
+import DAO.referentiels.magasins.MagasinsDAO;
 import Entites.referentiels.magasins.Magasin;
 import RestGT.referentiels.magasins.CallMagasin;
 
-public class CallMagasinStub implements CallMagasin {
+public class MagasinDAOStub implements MagasinsDAO<Magasin> {
 
 	@Override
-	public boolean existType(int id) {
+	public boolean existType(int id) throws Exception {
 		
 		if(id<5) {
 			return false;
@@ -42,6 +43,42 @@ public class CallMagasinStub implements CallMagasin {
 			throw new Exception();
 		}
 		return new ArrayList<Magasin>();
+	}
+
+	@Override
+	public void create(Magasin object) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Magasin> read() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Magasin object) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Magasin object, int id) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Magasin find(Magasin object) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Magasin selectMax() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

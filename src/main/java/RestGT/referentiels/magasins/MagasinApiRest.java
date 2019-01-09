@@ -128,9 +128,9 @@ public class MagasinApiRest {
 		init();
 		log.info("ENTREE DANS LA METHODE GET EN GET");
 		
-		MagasinControlleur magCon = new MagasinControlleur();
-		CallMagasin control = new CallMagasinImpl();
-		return magCon.rechercherMagasinType(id,control);
+		MagasinService magCon = new MagasinService();
+		MagasinsDAO<Magasin> dao = new MagasinDAOImpl();
+		return magCon.rechercherMagasinType(id,dao);
 	}
 	
 	@GET
@@ -140,9 +140,9 @@ public class MagasinApiRest {
 		init();
 		log.info("ENTREE DANS LA METHODE GET EN GET");
 		
-		MagasinControlleur magCon = new MagasinControlleur();
-		CallMagasin control = new CallMagasinImpl();
-		return magCon.rechercherMagasinNom(nom,control);
+		MagasinService magCon = new MagasinService();
+		MagasinsDAO<Magasin> dao = new MagasinDAOImpl();
+		return magCon.rechercherMagasinNom(nom,dao);
 	}
 }
 
