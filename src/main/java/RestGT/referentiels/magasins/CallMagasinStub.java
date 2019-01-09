@@ -23,7 +23,7 @@ public class CallMagasinStub implements CallMagasin {
 			array.add(new Magasin());
 			return array;
 		}
-		return null;
+		return new ArrayList<Magasin>();
 	}
 
 }

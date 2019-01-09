@@ -39,21 +39,21 @@ public class MagasinTest {
 		// Pas cette catégorie dans la base
 		log.info("Test categorie non disponible dans la base");
 		int id=0;
-		Response r = magCon.rechercherMagasin(id,control);
+		Response r = magCon.rechercherMagasinType(id,control);
 		assertEquals(500,r.getStatus());
 		
 		
 		// Pas de résultat
 		log.info("Test pas de resultats dans la base");
 		id=6;
-		r = magCon.rechercherMagasin(id,control);
+		r = magCon.rechercherMagasinType(id,control);
 		assertEquals(201,r.getStatus());
 		
 
 		// Tout ok
 		log.info("Test tout est OK");
 		id=8;
-		r = magCon.rechercherMagasin(id,control);
+		r = magCon.rechercherMagasinType(id,control);
 		assertEquals(200,r.getStatus());
 		
 	}

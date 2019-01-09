@@ -26,7 +26,7 @@ public class MagasinControlleur {
 		m.setIdType(id);
 		try {
 			ArrayList<Magasin> mag = control.rechercheType(m);
-			if(mag == null) {
+			if(mag.isEmpty()) {
 				return Response.status(201).entity("Pas de Resultat pour cette categorie").build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
