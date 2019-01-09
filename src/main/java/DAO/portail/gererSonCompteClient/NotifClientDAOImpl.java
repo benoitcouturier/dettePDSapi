@@ -43,7 +43,7 @@ public class NotifClientDAOImpl implements NotifClientDAO<Customer_account>{
 		
 		try {
 			connect = Database.getConnection();
-			String sql = "Select * from NotifCustomer where ";
+			String sql = "Select * from Customer_account where ";
 			ps = connect.prepareStatement(sql);
 			
 			if (!object.getCustomer_sex().isEmpty()){

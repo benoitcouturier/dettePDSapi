@@ -75,7 +75,7 @@ public class ClientApiRest {
 		return Response.status(200).entity(response).build();
 	}
 
-	// à mdofier
+	// recherche client via l'url
 	@GET
 	@Path("/find/sex={sex}&location={location}&notification={notification}")
 	@Produces("application/json")
