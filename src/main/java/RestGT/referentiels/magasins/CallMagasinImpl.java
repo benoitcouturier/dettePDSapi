@@ -16,13 +16,13 @@ public class CallMagasinImpl implements CallMagasin {
 
 	
 	@Override
-	public ArrayList<Magasin> rechercheType(Magasin m) {
+	public ArrayList<Magasin> rechercheType(Magasin m) throws Exception{
 		MagasinsDAO<Magasin> magasinDAO = new MagasinDAOImpl();
 		return magasinDAO.rechercheType(m);
 	}
 	
 	@Override
-	public ArrayList<Magasin> rechercheNom(Magasin m) {
+	public ArrayList<Magasin> rechercheNom(Magasin m) throws Exception {
 		MagasinsDAO<Magasin> magasinDAO = new MagasinDAOImpl();
 		return magasinDAO.rechercheNom(m);
 	}

@@ -19,7 +19,7 @@ public class MagasinControlleur {
 		String res = new String();
 		// controle :
 		if(!control.existType(id)) {
-			return Response.status(500).entity("Pas en Base").build();
+			return Response.status(202).entity("Pas en Base").build();
 		}
 		
 		Magasin m = new Magasin();

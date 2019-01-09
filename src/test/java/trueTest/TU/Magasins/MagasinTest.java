@@ -29,7 +29,7 @@ public class MagasinTest {
 	}
 	
 	@Test
-	public void test() {
+	public void testRechercheType() {
 		init();
 		
 		MagasinControlleur magCon = new MagasinControlleur();
@@ -39,7 +39,7 @@ public class MagasinTest {
 		log.info("Test categorie non disponible dans la base");
 		int id=0;
 		Response r = magCon.rechercherMagasinType(id,control);
-		assertEquals(500,r.getStatus());
+		assertEquals(202,r.getStatus());
 		
 		
 		// Pas de résultat
@@ -53,6 +53,40 @@ public class MagasinTest {
 		log.info("Test tout est OK");
 		id=8;
 		r = magCon.rechercherMagasinType(id,control);
+		assertEquals(200,r.getStatus());
+		
+		log.info("Test tout est OK");
+		id=9;
+		r = magCon.rechercherMagasinType(id,control);
+		assertEquals(500,r.getStatus());
+		
+	}
+	
+	@Test
+	public void testRechercheNom() {
+		init();
+		
+		MagasinControlleur magCon = new MagasinControlleur();
+		CallMagasin control = new CallMagasinStub();
+		
+		// Pas cette catégorie dans la base
+		log.info("Test categorie non disponible dans la base");
+		String nom="exception";
+		Response r = magCon.rechercherMagasinNom(nom,control);
+		assertEquals(500,r.getStatus());
+		
+		
+		// Pas de résultat
+		log.info("Test pas de resultats dans la base");
+		nom="non";
+		r = magCon.rechercherMagasinNom(nom,control);
+		assertEquals(201,r.getStatus());
+		
+
+		// Tout ok
+		log.info("Test tout est OK");
+		nom="oui";
+		r = magCon.rechercherMagasinNom(nom,control);
 		assertEquals(200,r.getStatus());
 		
 	}
