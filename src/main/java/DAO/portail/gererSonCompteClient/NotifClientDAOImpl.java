@@ -101,8 +101,15 @@ public class NotifClientDAOImpl implements NotifClientDAO<Customer_account>{
 			ps = connect.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				NotifCustomer nc = new NotifCustomer();
+				Customer_account nc = new Customer_account();
+				nc.setCustomer_phone(rs.getInt("customer_phone"));
+				nc.setCustomer_age(rs.getInt("customer_age"));
 				nc.setCustomer_sex(rs.getString("customer_sex"));
+				nc.setCustomer_state(rs.getString("customer_state"));
+				nc.setCustomer_city(rs.getString("customer_city"));
+				nc.setCustomer_adress(rs.getString("customer_adress"));
+				nc.setCustomer_email(rs.getString("customer_email"));
+				nc.setCustomer_preferences(rs.getString("customer_preferences"));
 				nc.setCustomer_notification(rs.getInt("customer_notification"));
 				nc.setCustomer_location(rs.getInt("customer_location"));
 				//notif_cust.add(nc);
