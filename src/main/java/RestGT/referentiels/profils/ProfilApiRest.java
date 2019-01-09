@@ -47,7 +47,7 @@ public class ProfilApiRest {
             Profil p = mapper.readValue(profil, Profil.class);
             pDAO.create(p);
             String res = "Profil saved :";
-            log.info(res);
+            log.info(response);
             response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -55,6 +55,29 @@ public class ProfilApiRest {
             return Response.status(500).entity(e).build();
         }
 
+        return Response.status(200).entity(response).build();
+    }
+
+
+
+    @GET
+    @Path("/find/{name}")
+    @Consumes("application/json")
+    public Response find(@PathParam("name") String name) {
+        ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
+        Profil profil = new Profil();
+        ObjectMapper mapper = new ObjectMapper();
+        String response = new String();
+        System.out.println("ok");
+        try{
+            profil.setProfilT_name(name);
+            pDAO.find(profil);
+            log.info(response);
+            response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(profil);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return Response.status(200).entity(response).build();
     }
 
