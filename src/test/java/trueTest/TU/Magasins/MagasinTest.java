@@ -13,8 +13,6 @@ import org.junit.Test;
 
 import DAO.referentiels.magasins.MagasinsDAO;
 import Entites.referentiels.magasins.Magasin;
-import RestGT.referentiels.magasins.CallMagasin;
-import RestGT.referentiels.magasins.CallMagasinImpl;
 import RestGT.referentiels.magasins.MagasinApiRest;
 import RestGT.referentiels.magasins.MagasinService;
 
@@ -31,7 +29,7 @@ public class MagasinTest {
 	}
 	
 	@Test
-	public void testRechercheType() {
+	public void testRechercheTypeCategorieMagasin() {
 		init();
 		
 		MagasinService magCon = new MagasinService();
@@ -65,7 +63,7 @@ public class MagasinTest {
 	}
 	
 	@Test
-	public void testRechercheNom() {
+	public void testRechercheNomMagasin() {
 		init();
 		
 		MagasinService magCon = new MagasinService();

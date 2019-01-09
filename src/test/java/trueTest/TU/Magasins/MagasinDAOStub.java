@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import DAO.referentiels.magasins.MagasinsDAO;
 import Entites.referentiels.magasins.Magasin;
-import RestGT.referentiels.magasins.CallMagasin;
 
 public class MagasinDAOStub implements MagasinsDAO<Magasin> {
 
