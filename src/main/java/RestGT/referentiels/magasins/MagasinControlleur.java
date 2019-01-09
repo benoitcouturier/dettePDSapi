@@ -27,7 +27,7 @@ public class MagasinControlleur {
 		try {
 			ArrayList<Magasin> mag = control.rechercheType(m);
 			if(mag.isEmpty()) {
-				return Response.status(201).entity("Pas de Resultat pour cette categorie").build();
+				return Response.status(201).entity("[ \"msg\" : \"Pas de Resultat pour cette categorie\"]").build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
@@ -53,7 +53,7 @@ public class MagasinControlleur {
 		try {
 			ArrayList<Magasin> mag = control.rechercheNom(m);
 			if(mag.isEmpty()) {
-				return Response.status(201).entity("Pas de Resultat pour cette categorie").build();
+				return Response.status(201).entity("[ \"msg\" : \"Pas de Resultat pour cette categorie\"]").build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mag);
