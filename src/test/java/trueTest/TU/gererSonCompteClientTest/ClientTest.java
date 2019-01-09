@@ -14,7 +14,7 @@ import RestGT.referentiels.client.ClientService;
 public class ClientTest {
 
 	@Test
-	public void testRechercheTypeCategorieMagasin() {
+	public void testRechercheClient() {
 
 		ClientService clientService = new ClientService();
 		NotifClientDAO<Customer_account> dao = new ClientDAOStub();
