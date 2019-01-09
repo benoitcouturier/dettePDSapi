@@ -6,8 +6,6 @@ import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import DAO.referentiels.magasins.MagasinDAOImpl;
-import DAO.referentiels.magasins.MagasinsDAO;
 import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.magasins.RechercheVide;
 
