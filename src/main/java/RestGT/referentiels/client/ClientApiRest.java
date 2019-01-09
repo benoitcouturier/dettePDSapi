@@ -20,10 +20,14 @@ import DAO.portail.gererSonCompteClient.ClientAccountDAO;
 import DAO.portail.gererSonCompteClient.ClientAccountDAOImpl;
 import DAO.portail.gererSonCompteClient.NotifClientDAO;
 import DAO.portail.gererSonCompteClient.NotifClientDAOImpl;
+import DAO.referentiels.magasins.MagasinDAOImpl;
+import DAO.referentiels.magasins.MagasinsDAO;
 import DAO.referentiels.produitsVendus.ProductDAO;
 import DAO.referentiels.produitsVendus.ProductDAOImpl;
 import Entites.portail.gererSonCompteClient.Customer_account;
+import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
+import RestGT.referentiels.magasins.MagasinService;
 
 
 @Path("/Client")
@@ -81,23 +85,14 @@ public class ClientApiRest {
 	@Produces("application/json")
 	public Response find(@PathParam("sex") String customer_sex, @PathParam("location") int customer_location, @PathParam("notification") int customer_notification) {
 		init();
-		log.info("D�but m�thode Search en @GET");
 		String res = new String();
-		try {
-			NotifClientDAO<Customer_account> cDAO = new NotifClientDAOImpl();
-			Customer_account c = new Customer_account();
-			c.setCustomer_sex(customer_sex);
-			c.setCustomer_location(customer_location);
-			c.setCustomer_notification(customer_notification);
-
-			Customer_account ca = cDAO.find(c);
-			ObjectMapper mapper = new ObjectMapper();
-			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(ca);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			log.fatal(e.getStackTrace());
-		}
-		return Response.status(200).entity(res).build();
+		Customer_account c = new Customer_account();
+		c.setCustomer_sex(customer_sex);
+		c.setCustomer_location(customer_location);
+		c.setCustomer_notification(customer_notification);
+		ClientService clientService = new ClientService();
+		NotifClientDAO<Customer_account> cDAO = new NotifClientDAOImpl();
+		return clientService.find(c,cDAO);
 	}
 
 

@@ -140,9 +140,9 @@ public class MagasinApiRest {
 		init();
 		log.info("ENTREE DANS LA METHODE GET EN GET");
 		
-		MagasinService magCon = new MagasinService();
-		MagasinsDAO<Magasin> dao = new MagasinDAOImpl();
-		return magCon.rechercherMagasinNom(nom,dao);
+		MagasinService magCon = new MagasinService(); // classe service testée
+		MagasinsDAO<Magasin> dao = new MagasinDAOImpl(); // partie MOCKée
+		return magCon.rechercherMagasinNom(nom,dao); // méthode testée
 	}
 }
 
