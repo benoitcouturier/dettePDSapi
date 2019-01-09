@@ -29,7 +29,7 @@ public class MagasinControlleur {
 			ArrayList<Magasin> mag = control.rechercheType(m);
 			if(mag.isEmpty()) {
 				RechercheVide erreur = new RechercheVide();
-				erreur.setNom("Pas de Resultat pour cette categorie");
+				erreur.setNom("Pas de resultats pour cette categorie");
 				return Response.status(201).entity(erreur).build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
@@ -57,7 +57,7 @@ public class MagasinControlleur {
 			ArrayList<Magasin> mag = control.rechercheNom(m);
 			if(mag.isEmpty()) {
 				RechercheVide erreur = new RechercheVide();
-				erreur.setNom("Pas de Resultat pour cette categorie");
+				erreur.setNom("Pas de resultats pour cette categorie");
 				return Response.status(201).entity(erreur).build();
 			}
 			ObjectMapper mapper = new ObjectMapper();
