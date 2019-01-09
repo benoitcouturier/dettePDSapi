@@ -1,10 +1,12 @@
 package DAO.referentiels.profilsConsommateur;
+import DataBase.Database;
 import Entites.referentiels.profilsConsommateur.Profil;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
-import DataBase.Database;
 
 public class ProfilDAOImpl implements ProfilDAO<Profil> {
     @Override
@@ -34,21 +36,63 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 
     @Override
     public ArrayList<Profil> read() throws Exception {
-    return null;
-    }
 
-    @Override
-    public void delete(Profil object) throws Exception {
 
-    }
+        Connection connect;
+        PreparedStatement st;
 
-    @Override
-    public void update(Profil object, int id) throws Exception {
+        try {
 
-    }
+            connect= Database.getConnection();
+            String sql = "SELECT* FROM profil_type";
+            st = connect.prepareStatement(sql);
+            st.executeUpdate();
 
-    @Override
-    public Profil find(Profil object) throws Exception {
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
+
+    @Override
+    public void delete(Profil profil) throws Exception {
+
+    }
+
+    @Override
+    public void update(Profil profil, int id) throws Exception {
+
+    }
+
+    @Override
+    public Profil find(Profil profil) throws Exception {
+
+        Connection connect;
+        PreparedStatement st;
+        ResultSet rs;
+
+        try {
+
+            connect= Database.getConnection();
+            String sql= "SELECT* FROM profil_type WHERE nomProfil=?";
+            st = connect.prepareStatement(sql);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                profil.setProfilT_id(rs.getInt("numProfil"));
+                profil.setProfilT_name(rs.getString("nomProfil"));
+                profil.setProduct_Type(rs.getString("typeProduit"));
+                profil.setAgeClient(rs.getInt("ageClient"));
+                profil.setSexClient(rs.getString("sexeClient"));
+                profil.setPurchaseVolume(rs.getInt("volumeAchat"));
+            }
+            st.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
