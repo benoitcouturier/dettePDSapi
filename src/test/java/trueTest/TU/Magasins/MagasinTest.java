@@ -11,10 +11,10 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import RestGT.referentiels.magasins.CallMagasin;
-import RestGT.referentiels.magasins.CallMagasinImpl;
+import DAO.referentiels.magasins.MagasinsDAO;
+import Entites.referentiels.magasins.Magasin;
 import RestGT.referentiels.magasins.MagasinApiRest;
-import RestGT.referentiels.magasins.MagasinControlleur;
+import RestGT.referentiels.magasins.MagasinService;
 
 
 public class MagasinTest {
@@ -29,64 +29,64 @@ public class MagasinTest {
 	}
 	
 	@Test
-	public void testRechercheType() {
+	public void testRechercheTypeCategorieMagasin() {
 		init();
 		
-		MagasinControlleur magCon = new MagasinControlleur();
-		CallMagasin control = new CallMagasinStub();
+		MagasinService magCon = new MagasinService();
+		MagasinsDAO<Magasin> dao = new MagasinDAOStub();
 		
 		// Pas cette catégorie dans la base
 		log.info("Test categorie non disponible dans la base");
 		int id=0;
-		Response r = magCon.rechercherMagasinType(id,control);
+		Response r = magCon.rechercherMagasinType(id,dao);
 		assertEquals(202,r.getStatus());
 		
 		
 		// Pas de résultat
 		log.info("Test pas de resultats dans la base");
 		id=6;
-		r = magCon.rechercherMagasinType(id,control);
+		r = magCon.rechercherMagasinType(id,dao);
 		assertEquals(201,r.getStatus());
 		
 
 		// Tout ok
 		log.info("Test tout est OK");
 		id=8;
-		r = magCon.rechercherMagasinType(id,control);
+		r = magCon.rechercherMagasinType(id,dao);
 		assertEquals(200,r.getStatus());
 		
 		log.info("Test tout est OK");
 		id=9;
-		r = magCon.rechercherMagasinType(id,control);
+		r = magCon.rechercherMagasinType(id,dao);
 		assertEquals(500,r.getStatus());
 		
 	}
 	
 	@Test
-	public void testRechercheNom() {
+	public void testRechercheNomMagasin() {
 		init();
 		
-		MagasinControlleur magCon = new MagasinControlleur();
-		CallMagasin control = new CallMagasinStub();
+		MagasinService magCon = new MagasinService();
+		MagasinsDAO<Magasin> dao = new MagasinDAOStub();
 		
 		// Pas cette catégorie dans la base
 		log.info("Test categorie non disponible dans la base");
 		String nom="exception";
-		Response r = magCon.rechercherMagasinNom(nom,control);
+		Response r = magCon.rechercherMagasinNom(nom,dao);
 		assertEquals(500,r.getStatus());
 		
 		
 		// Pas de résultat
 		log.info("Test pas de resultats dans la base");
 		nom="non";
-		r = magCon.rechercherMagasinNom(nom,control);
+		r = magCon.rechercherMagasinNom(nom,dao);
 		assertEquals(201,r.getStatus());
 		
 
 		// Tout ok
 		log.info("Test tout est OK");
 		nom="oui";
-		r = magCon.rechercherMagasinNom(nom,control);
+		r = magCon.rechercherMagasinNom(nom,dao);
 		assertEquals(200,r.getStatus());
 		
 	}

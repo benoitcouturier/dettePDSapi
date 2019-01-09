@@ -6,25 +6,25 @@ import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import DAO.referentiels.magasins.MagasinDAOImpl;
+import DAO.referentiels.magasins.MagasinsDAO;
 import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.magasins.RechercheVide;
 
-public class MagasinControlleur {
+
+public class MagasinService {
 
 	
-	public Response rechercherMagasinType(int id, CallMagasin control) {
-
-		
-		String res = new String();
-		// controle :
-		if(!control.existType(id)) {
-			return Response.status(202).entity("Pas en Base").build();
-		}
-		
-		Magasin m = new Magasin();
-		m.setIdType(id);
+	public Response rechercherMagasinType(int id,MagasinsDAO<Magasin> dao) {
 		try {
-			ArrayList<Magasin> mag = control.rechercheType(m);
+			String res = new String();
+			if(!dao.existType(id)) {
+				return Response.status(202).entity("Pas en Base").build();
+			}
+			
+			Magasin m = new Magasin();
+			m.setIdType(id);
+			ArrayList<Magasin> mag = dao.rechercheType(m);
 			if(mag.isEmpty()) {
 				RechercheVide erreur = new RechercheVide();
 				erreur.setNom("Pas de resultats pour cette categorie");
@@ -44,15 +44,13 @@ public class MagasinControlleur {
 		
 	}
 	
-	public Response rechercherMagasinNom(String nom, CallMagasin control) {
-
-		
-		String res = new String();
-				
-		Magasin m = new Magasin();
-		m.setNom(nom);
+	public Response rechercherMagasinNom(String nom, MagasinsDAO<Magasin> dao) {
 		try {
-			ArrayList<Magasin> mag = control.rechercheNom(m);
+			String res = new String();
+			
+			Magasin m = new Magasin();
+			m.setNom(nom);
+			ArrayList<Magasin> mag = dao.rechercheNom(m);
 			if(mag.isEmpty()) {
 				RechercheVide erreur = new RechercheVide();
 				erreur.setNom("Pas de resultats pour cette categorie");
