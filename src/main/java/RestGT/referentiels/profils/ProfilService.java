@@ -27,18 +27,11 @@ public class ProfilService {
 
 			return Response.status(501).build();
 	}
-	
-	public Response mockAchats(ProfilDAO<Profil> dao) {
 
-		try {
-			dao.mockAchats();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return Response.status(500).entity(e).build();
-		}
+	public Response mockAchats(ProfilDAO<Profil> dao) throws Exception{
 
-		return Response.status(200).build();
+		dao.mockAchats();
+		return Response.status(200).entity("Success").build();
 
 	}
 

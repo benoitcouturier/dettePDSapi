@@ -103,7 +103,8 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 
 		try {
 			connect= Database.getConnection();
-			String sql= "Insert into CommandLine values (NULL,1,FLOOR(RAND()*5),FLOOR(RAND()*10) ";
+			String sql= "Insert into CommandLine (idCommand,idProduct,qty) values (1,(FLOOR(RAND()*5)+1),FLOOR(RAND()*10)); ";
+			System.out.println(sql);
 			st = connect.prepareStatement(sql);
 			st.executeUpdate();
 		} catch (SQLException e) {
