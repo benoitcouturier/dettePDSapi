@@ -27,13 +27,11 @@ public class ProfilService {
 
 			return Response.status(501).build();
 	}
+	
+	public Response mockAchats(ProfilDAO<Profil> dao) {
 
-	public Response mockUser(ProfilDAO<Profil> dao) {
-
-		String response = new String();
-		System.out.println("ok");
 		try {
-			dao.mockUser();
+			dao.mockAchats();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,5 +39,7 @@ public class ProfilService {
 		}
 
 		return Response.status(200).build();
+
 	}
+
 }

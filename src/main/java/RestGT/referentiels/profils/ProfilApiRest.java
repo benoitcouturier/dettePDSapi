@@ -76,14 +76,14 @@ public class ProfilApiRest {
     
     
     @GET
-    @Path("/mockUser")
+    @Path("/mockAchats")
     @Produces("application/json")
     public Response mockUser() {
         init();
         log.info("Methode MockUser");
         ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
         try {
-        	return service.mockUser(pDAO);
+        	return service.mockAchats(pDAO);
         	
         }catch(Exception e) {
         	return Response.status(500).entity(e).build();

@@ -96,23 +96,20 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
     }
 
 	@Override
-	public void mockUser() throws Exception {
+	public void mockAchats() throws Exception {
 		Connection connect;
-        PreparedStatement st;
-        ResultSet rs;
+		PreparedStatement st;
+		ResultSet rs;
 
-        for(int i =0; i< 100; i++) {
-            try {
+		try {
+			connect= Database.getConnection();
+			String sql= "Insert into CommandLine values (NULL,1,FLOOR(RAND()*5),FLOOR(RAND()*10) ";
+			st = connect.prepareStatement(sql);
+			st.executeUpdate();
+		} catch (SQLException e) {
 
-                connect= Database.getConnection();
-                String sql= "Insert into Client values (NULL,'client_"+i+"');";
-                st = connect.prepareStatement(sql);
-                st.executeUpdate();
-            } catch (SQLException e) {
-
-                e.printStackTrace();
-            }
-        }
+			e.printStackTrace();
+		}
 	}
 
 }
