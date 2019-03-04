@@ -19,11 +19,14 @@ public Connection connect;
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "INSERT INTO Withdrawal_method VALUES (DEFAULT,?,?,?)";
+			String sql = "INSERT INTO Withdrawal_method VALUES (DEFAULT,?,?,?,?,?,?)";
 			ps = connect.prepareStatement(sql);
 			ps.setString(i++,wm.getWM_name());
-			ps.setInt(i++,wm.getWM_distance());
-			ps.setInt(i++,wm.getWM_price());
+			ps.setFloat(i++,wm.getWM_price());
+			ps.setInt(i++, wm.getWM_distance_min());
+			ps.setInt(i++, wm.getWM_distance_max());
+			ps.setInt(i++, wm.getWM_estimated_delivery_min());
+			ps.setInt(i++, wm.getWM_estimated_delivery_max());
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -47,9 +50,12 @@ public Connection connect;
 
 			if(rs.first()) {
 
-				wm.setWM_distance(rs.getInt("WP_distance"));
-				wm.setWM_price(rs.getInt("WP_price"));
-				wm.setWM_name(rs.getString("WM_name"));
+				ps.setString(i++,wm.getWM_name());
+				ps.setFloat(i++,wm.getWM_price());
+				ps.setInt(i++, wm.getWM_distance_min());
+				ps.setInt(i++, wm.getWM_distance_max());
+				ps.setInt(i++, wm.getWM_estimated_delivery_min());
+				ps.setInt(i++, wm.getWM_estimated_delivery_max());
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,16 +63,69 @@ public Connection connect;
 		return wm;
 	}
 	
+	public ArrayList<Withdrawal_method> find(String vm_name){
+
+		PreparedStatement ps ;
+		ResultSet rs = null;
+		ArrayList <Withdrawal_method> Withdrawal_methods = new ArrayList<Withdrawal_method>();
+		
+		try {
+			int i = 1;
+			
+			connect = Database.getConnection();
+			String sql = "SELECT * FROM Withdrawal_method where WM_name = ?";
+			ps = connect.prepareStatement(sql);
+			ps.setString(i, vm_name);
+			rs = ps.executeQuery(sql);
+
+			while(rs.next()) {
+				Withdrawal_method wm = new Withdrawal_method(rs.getInt("WM_id"), rs.getString("WM_name"), rs.getFloat("WM_price"), rs.getInt("WM_distance_min"),rs.getInt("WM_distance_max"),rs.getInt("WM_estimated_delivery_min"), rs.getInt("WM_estimated_delivery_max"));
+				Withdrawal_methods.add(wm);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Withdrawal_methods;
+	}
+	
+	public ArrayList<String> findNames(){
+
+		PreparedStatement ps ;
+		ResultSet rs = null;
+		ArrayList <String> WM_names = new ArrayList<String>();
+		
+		try {
+			
+			connect = Database.getConnection();
+			String sql = "SELECT DISTINCT WM_name FROM Withdrawal_method";
+			ps = connect.prepareStatement(sql);
+			rs = ps.executeQuery(sql);
+
+			while(rs.next()) {
+				String name = rs.getString("WM_name");
+				WM_names.add(name);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return WM_names;
+	}
+	
+	
+	
 	public void update (Withdrawal_method wm, int j){
 		PreparedStatement ps ;
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "UPDATE Withdrawal_method SET WM_name = ?, WM_distance = ?, WM_price = ? WHERE WM_id = ?";
+			String sql = "UPDATE Withdrawal_method SET WM_name = ?, WM_price_ = ?, WM_distance_min = ? WM_distance_max = ?, WM_estimated_delivery_min = ?, WM_estimated_delivery_max = ? WHERE WM_id = ?";
 			ps = connect.prepareStatement(sql);
 			ps.setString(i++,wm.getWM_name());
-			ps.setInt(i++,wm.getWM_distance());
-			ps.setInt(i++,wm.getWM_price());
+			ps.setFloat(i++,wm.getWM_price());
+			ps.setInt(i++, wm.getWM_distance_min());
+			ps.setInt(i++, wm.getWM_distance_max());
+			ps.setInt(i++, wm.getWM_estimated_delivery_min());
+			ps.setInt(i++, wm.getWM_estimated_delivery_max());
 			ps.setInt(i++,j);
 			ps.executeUpdate();
 			
@@ -111,9 +170,12 @@ public Connection connect;
 				
 				Withdrawal_method wm = new Withdrawal_method();
 				wm.setWM_id(rs.getInt("WM_id"));
-				wm.setWM_distance(rs.getInt("WM_distance"));
-				wm.setWM_price(rs.getInt("WM_price"));
 				wm.setWM_name(rs.getString("WM_name"));
+				wm.setWM_price(rs.getFloat("WM_price"));
+				wm.setWM_distance_min(rs.getInt("WM_distance_min"));
+				wm.setWM_distance_max(rs.getInt("WM_distance_max"));
+				wm.setWM_estimated_delivery_min(rs.getInt("WM_estimated_delivery_min"));
+				wm.setWM_estimated_delivery_max(rs.getInt("WM_estimated_delivery_max"));
 				
 				liste.add(wm);  
 			}	

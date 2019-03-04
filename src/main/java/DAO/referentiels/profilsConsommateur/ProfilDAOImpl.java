@@ -95,4 +95,22 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
         return null;
     }
 
+	@Override
+	public void mockAchats() throws Exception {
+		Connection connect;
+		PreparedStatement st;
+		ResultSet rs;
+
+		try {
+			connect= Database.getConnection();
+			String sql= "Insert into CommandLine (idCommand,idProduct,qty) values (1,(FLOOR(RAND()*5)+1),FLOOR(RAND()*10)); ";
+			System.out.println(sql);
+			st = connect.prepareStatement(sql);
+			st.executeUpdate();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+
 }

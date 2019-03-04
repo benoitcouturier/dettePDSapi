@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 @Path("/Profil")
 public class ProfilApiRest {
 
-
+	private  ProfilService service = new ProfilService();
     private static final Logger log = Logger.getLogger(ProfilApiRest.class);
 
     public static void init() {
@@ -33,6 +33,7 @@ public class ProfilApiRest {
         log.info("Methode GET");
         return null;
     }
+    
 
     @POST
     @Path("/create")
@@ -43,7 +44,7 @@ public class ProfilApiRest {
         ObjectMapper mapper = new ObjectMapper();
         try{
             Profil p = mapper.readValue(profil, Profil.class);
-            ProfilService service = new ProfilService();
+           
             return service.create(p,pDAO);
         }catch (Exception e){
             return Response.status(500).entity(e).build();
@@ -71,6 +72,22 @@ public class ProfilApiRest {
             e.printStackTrace();
         }
         return Response.status(200).entity(response).build();
+    }
+    
+    
+    @GET
+    @Path("/mockAchats")
+    @Produces("application/json")
+    public Response mockUser() {
+        init();
+        log.info("Methode MockUser");
+        ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
+        try {
+        	return service.mockAchats(pDAO);
+        	
+        }catch(Exception e) {
+        	return Response.status(500).entity(e).build();
+        }
     }
 
 }

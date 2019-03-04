@@ -4,5 +4,5 @@ import DAO.CrudDAO;
 
 public interface ProfilDAO<T> extends CrudDAO<T> {
 
-
+	public void mockAchats() throws Exception;
 }

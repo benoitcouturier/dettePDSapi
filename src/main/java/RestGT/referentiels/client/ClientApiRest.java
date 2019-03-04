@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,13 +18,22 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import DAO.portail.gererSonCompteClient.ClientAccountDAO;
 import DAO.portail.gererSonCompteClient.ClientAccountDAOImpl;
+import DAO.portail.gererSonCompteClient.NotifClientDAO;
+import DAO.portail.gererSonCompteClient.NotifClientDAOImpl;
+import DAO.referentiels.magasins.MagasinDAOImpl;
+import DAO.referentiels.magasins.MagasinsDAO;
+import DAO.referentiels.produitsVendus.ProductDAO;
+import DAO.referentiels.produitsVendus.ProductDAOImpl;
 import Entites.portail.gererSonCompteClient.Customer_account;
+import Entites.referentiels.magasins.Magasin;
+import Entites.referentiels.produitsVendus.Product;
+import RestGT.referentiels.magasins.MagasinService;
 
 
 @Path("/Client")
 public class ClientApiRest {
 
-	
+
 	private static final Logger log = Logger.getLogger(ClientApiRest.class);
 
 	public static void init() {
@@ -46,11 +56,11 @@ public class ClientApiRest {
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response post(String client) {
-		
+
 		log.info("ENTREE DANS LA METHODE ADD EN POST");
 		System.out.println(client);
 		ClientAccountDAO<Customer_account> cDAO = new ClientAccountDAOImpl();
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		String response = new String();
 		System.out.println(client);
@@ -68,5 +78,22 @@ public class ClientApiRest {
 
 		return Response.status(200).entity(response).build();
 	}
+
+	// recherche client via l'url
+	@GET
+	@Path("/find/sex={sex}&location={location}&notification={notification}")
+	@Produces("application/json")
+	public Response find(@PathParam("sex") String customer_sex, @PathParam("location") int customer_location, @PathParam("notification") int customer_notification) {
+		init();
+		String res = new String();
+		Customer_account c = new Customer_account();
+		c.setCustomer_sex(customer_sex);
+		c.setCustomer_location(customer_location);
+		c.setCustomer_notification(customer_notification);
+		ClientService clientService = new ClientService();
+		NotifClientDAO<Customer_account> cDAO = new NotifClientDAOImpl();
+		return clientService.find(c,cDAO);
+	}
+
 
 }
