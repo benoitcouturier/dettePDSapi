@@ -101,7 +101,7 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
         PreparedStatement st;
         ResultSet rs;
 
-        for(int i =0; i< 1000; i++) {
+        for(int i =0; i< 100; i++) {
             try {
 
                 connect= Database.getConnection();
