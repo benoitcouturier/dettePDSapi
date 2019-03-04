@@ -8,7 +8,7 @@ public class Error {
 		return pname;
 	}
 
-	public void setNom(String pname) {
+	public void setPname(String pname) {
 		this.pname = pname;
 	}
 }

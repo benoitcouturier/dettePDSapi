@@ -39,21 +39,21 @@ public class ProductTest {
 		// non dispo
 		log.info("Test categorie non disponible dans la base");
 		String nom="exception";
-		Response r = prodS.FindProductName(nom,pdao);
+		Response r = prodS.findproductname(nom,pdao);
 		assertEquals(500,r.getStatus());
 		
 		
 		// erreur
 		log.info("Test NON OK");
 		nom="OUII";
-		r = prodS.FindProductName(nom,pdao);
+		r = prodS.findproductname(nom,pdao);
 		assertEquals(201,r.getStatus());
 		
 
 		// fonctionne
 		log.info("TEST OK");
 		nom="OUI";
-		r = prodS.FindProductName(nom,pdao);
+		r = prodS.findproductname(nom,pdao);
 		assertEquals(200,r.getStatus());
 		
 	}

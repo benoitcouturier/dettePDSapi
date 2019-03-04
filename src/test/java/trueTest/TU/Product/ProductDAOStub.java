@@ -52,6 +52,18 @@ public class ProductDAOStub implements ProductDAO<Product> {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Product> findtype(Product object) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean issettype(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 
 }

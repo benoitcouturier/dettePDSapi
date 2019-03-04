@@ -2,9 +2,17 @@ package Entites.referentiels.produitsVendus;
 
 public class Product {
 
-	private String pname;
+	private String pname, departement;
 	private int pid,pqte,sid,psid,ptid;
 	private float price;
+	
+	public String getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
 	
 	public float getPrice() {
 		return price;

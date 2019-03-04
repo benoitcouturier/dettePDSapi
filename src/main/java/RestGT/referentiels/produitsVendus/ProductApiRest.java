@@ -18,11 +18,9 @@ import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import DAO.referentiels.produitsVendus.ProductDAOImpl;
-import DAO.referentiels.magasins.MagasinDAOImpl;
-import DAO.referentiels.magasins.MagasinsDAO;
 import DAO.referentiels.produitsVendus.ProductDAO;
-import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
+
 
 @Path("/Product")
 public class ProductApiRest {
@@ -50,7 +48,7 @@ public class ProductApiRest {
 			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(p);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			log.fatal(e.getStackTrace());
+			e.printStackTrace();
 		}
 		return Response.status(200).entity(res).build();
 	}
@@ -67,7 +65,7 @@ public class ProductApiRest {
 		try {
 			Product prod = mapper.readValue(p, Product.class);
 			pDAO.create(prod);
-			String res = "Le produit ajoute est :"+prod.getPname()+" "+prod.getPrice()+" "+prod.getPqte()+" "+prod.getSid()+" "+prod.getPsid()+" "+prod.getPtid(); 
+			String res = "Le produit ajoute est :"+prod.getPname()+" "+prod.getPrice()+" "+prod.getPqte()+" "+prod.getSid()+" "+prod.getPsid()+" "+prod.getPtid()+" "+prod.getDepartement(); 
 			log.info(res);
 			response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
 		} catch (Exception e) {
@@ -121,6 +119,30 @@ public class ProductApiRest {
 			log.fatal(e.getStackTrace());
 		}
 		return Response.status(200).entity(res).build();
+	}
+	
+	@GET
+	@Path("/findtype/{prodt_id}")
+	@Produces("application/json")
+	public Response findtype(@PathParam("prodt_id") int prodt_id) {
+		init();
+		log.info("ENTREE DANS LA METHODE GET EN GET");
+		
+		ProductService prod = new ProductService();
+		ProductDAO<Product> dao = new ProductDAOImpl();
+		return prod.findproducttype(prodt_id,dao);
+	}
+	
+	@GET
+	@Path("/findname/{product_name}")
+	@Produces("application/json")
+	public Response findname(@PathParam("product_name") String product_name) {
+		init();
+		log.info("ENTREE DANS LA METHODE GET EN GET");
+		
+		ProductService prod = new ProductService();
+		ProductDAO<Product> dao = new ProductDAOImpl();
+		return prod.findproductname(product_name,dao);
 	}
 
 }

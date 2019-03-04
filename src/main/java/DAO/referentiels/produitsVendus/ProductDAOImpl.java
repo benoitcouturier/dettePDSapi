@@ -1,7 +1,6 @@
 package DAO.referentiels.produitsVendus;
 
 import DataBase.Database;
-import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
 
 import java.sql.*;
@@ -14,13 +13,14 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 		PreparedStatement myStmt = null;
 			// connect to the bdd
 			Connection myConn = Database.getConnection();
-			myStmt = myConn.prepareStatement("insert into Product (product_id,product_name,product_price,product_quantity,store_id,prods_id,prodt_id) values (NULL,?,?,?,?,?,?)"); // request
+			myStmt = myConn.prepareStatement("insert into Product (product_id,product_name,product_price,product_quantity,store_id,prods_id,prodt_id,departement) values (NULL,?,?,?,?,?,?,?)"); // request
 			myStmt.setString(1, object.getPname());
 			myStmt.setFloat(2, object.getPrice());
 			myStmt.setInt(3, object.getPqte());
 			myStmt.setInt(4, object.getSid());
 			myStmt.setInt(5, object.getPsid());
 			myStmt.setInt(6, object.getPtid());
+			myStmt.setString(7, object.getDepartement());
 			myStmt.executeUpdate();
 			myConn.close();
 	}
@@ -42,7 +42,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
         PreparedStatement myStmt=null;
         //connect to the bdd
         Connection myConn = Database.getConnection();
-        myStmt = myConn.prepareStatement("update Product set product_name=? ,product_price=?, product_quantity=?, store_id=?, prods_id=?, prodt_id=?  where product_id=? ");
+        myStmt = myConn.prepareStatement("update Product set product_name=? ,product_price=?, product_quantity=?, store_id=?, prods_id=?, prodt_id=?, departement=? where product_id=? ");
         //value entered in the order of '?' in the request
         myStmt.setString(1, object.getPname());
         myStmt.setDouble(2, object.getPrice());
@@ -51,6 +51,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
         myStmt.setInt(5, object.getPsid());
         myStmt.setInt(6, object.getPtid());
         myStmt.setInt(7, object.getPid());
+        myStmt.setString(8, object.getDepartement());
         myStmt.executeUpdate();
         myConn.close();
 
@@ -77,6 +78,7 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 					p.setSid(myRs.getInt("store_id"));
 					p.setPsid(myRs.getInt("prods_id"));
 					p.setPtid(myRs.getInt("prodt_id"));
+					p.setDepartement(myRs.getString("departement"));
 				}
 
 			} catch (SQLException e) {
@@ -105,11 +107,44 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 			p.setSid(myRs.getInt("store_id"));
 			p.setPsid(myRs.getInt("prods_id"));
 			p.setPtid(myRs.getInt("prodt_id"));
+			p.setDepartement(myRs.getString("departement"));
 
 			listProduct.add(p);
 }
         // return list of product
         return listProduct;
+	}
+	
+	@Override
+	public ArrayList<Product> findtype(Product object)  {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		ArrayList<Product> prod = new ArrayList<Product>();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select * from Product where prodt_id = ?";
+			ps = connect.prepareStatement(sql);
+			ps.setInt(i++, object.getPtid());
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Product p = new Product();
+				p.setPid(rs.getInt("product_id"));
+				p.setPname(rs.getString("product_name"));
+				p.setPqte(rs.getInt("product_quantity"));
+				p.setPrice(rs.getFloat("product_price"));
+				p.setSid(rs.getInt("store_id"));
+				p.setPsid(rs.getInt("prods_id"));
+				p.setPtid(rs.getInt("prodt_id"));
+				p.setDepartement(rs.getString("departement"));
+				prod.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return prod;
 	}
 	
 	public ArrayList<Product> findname(Product object)  {
@@ -135,4 +170,27 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 		}
 		return prod;
 	}
+	
+	@Override
+	public boolean issettype(int id) {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		Boolean b = false;
+		try {
+			connect = Database.getConnection();
+			String sql = "Select * from Product_type where prodt_id = ?";
+			ps = connect.prepareStatement(sql);
+			ps.setInt(1,id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				b = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+
 }
