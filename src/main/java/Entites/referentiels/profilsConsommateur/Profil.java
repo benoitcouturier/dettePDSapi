@@ -2,6 +2,7 @@ package Entites.referentiels.profilsConsommateur;
 
 public class Profil {
 
+	// R1
         public int getProfilT_id() {
             return profilT_id;
         }
@@ -53,6 +54,58 @@ public class Profil {
         private String sexClient;
         private int purchaseVolume;
 
+        // R2
+        
+        private int numProfil;
+        private String nomProfil,sexeClient,ageRange,purshaseFrequency,commandType;
+		
+        public int getNumProfil() {
+			return numProfil;
+		}
+
+		public void setNumProfil(int numProfil) {
+			this.numProfil = numProfil;
+		}
+
+		public String getNomProfil() {
+			return nomProfil;
+		}
+
+		public void setNomProfil(String nomProfil) {
+			this.nomProfil = nomProfil;
+		}
+
+		public String getSexeClient() {
+			return sexeClient;
+		}
+
+		public void setSexeClient(String sexeClient) {
+			this.sexeClient = sexeClient;
+		}
+
+		public String getAgeRange() {
+			return ageRange;
+		}
+
+		public void setAgeRange(String ageRange) {
+			this.ageRange = ageRange;
+		}
+
+		public String getPurshaseFrequency() {
+			return purshaseFrequency;
+		}
+
+		public void setPurshaseFrequency(String purshaseFrequency) {
+			this.purshaseFrequency = purshaseFrequency;
+		}
+
+		public String getCommandType() {
+			return commandType;
+		}
+
+		public void setCommandType(String commandType) {
+			this.commandType = commandType;
+		}
         
 
 }

@@ -37,4 +37,10 @@ public class ProfilDAOStub implements ProfilDAO<Profil> {
         return null;
     }
 
+	@Override
+	public void mockUser() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
