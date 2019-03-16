@@ -91,7 +91,7 @@ public class ProfilApiRest {
     }
 
     @GET
-    @Path("/tous")
+    @Path("/determinationProfil")
     @Produces("application/json")
     public Response determinationProfil() {
         init();
