@@ -90,4 +90,18 @@ public class ProfilApiRest {
         }
     }
 
+    @GET
+    @Path("/tous")
+    @Produces("application/json")
+    public Response determinationProfil() {
+        init();
+        ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
+        try {
+        	return service.determinationProfil(pDAO);
+        	
+        }catch(Exception e) {
+        	return Response.status(500).entity(e).build();
+        }
+    }
+    
 }

@@ -60,9 +60,25 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 
     }
 
+    // update le profil du customer_account
+    // id = id du customer account
     @Override
     public void update(Profil profil, int id) throws Exception {
+    	Connection connect;
+		PreparedStatement st;
+		ResultSet rs;
+		for (int i=0; i < 100; i++) {
+			try {
+				connect= Database.getConnection();
+				String sql= "Update Customer_account set idProfil ="+profil.getNumProfil()+" where ID ="+id+" ; ";
+				System.out.println(sql);
+				st = connect.prepareStatement(sql);
+				st.executeUpdate();
+			} catch (SQLException e) {
 
+				e.printStackTrace();
+			}	
+		}
     }
 
     @Override
@@ -100,10 +116,10 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 		Connection connect;
 		PreparedStatement st;
 		ResultSet rs;
-		for (int i=0; i < 100; i++) {
+		for (int i=0; i < 200; i++) {
 			try {
 				connect= Database.getConnection();
-				String sql= "Insert into CommandLine (idCommand,idProduct,qty) values (1,(FLOOR(RAND()*5)+1),FLOOR(RAND()*10)); ";
+				String sql= "Insert into CommandLine (idCommand,idProduct,qty) values ((FLOOR(RAND()*5)+1),(FLOOR(RAND()*5)+1),FLOOR(RAND()*10)+1); ";
 				System.out.println(sql);
 				st = connect.prepareStatement(sql);
 				st.executeUpdate();

@@ -54,4 +54,11 @@ public class ProfilTest {
 
     }
 
+    
+    @Test
+    public void algoProfil() {
+        init();
+        assertEquals(true,true);
+
+    }
 }

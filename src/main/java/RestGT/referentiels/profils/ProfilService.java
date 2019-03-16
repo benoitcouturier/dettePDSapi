@@ -31,8 +31,24 @@ public class ProfilService {
 	public Response mockAchats(ProfilDAO<Profil> dao) throws Exception{
 
 		dao.mockAchats();
-		return Response.status(200).entity("Success").build();
+		String []msg = {"Sucess"};
+		return Response.status(200).entity(msg).build();
 
 	}
 
+	public Response determinationProfil(ProfilDAO<Profil> dao) {
+		String response = new String();
+		System.out.println("ok");
+		try {
+			//dao.create(profil);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(500).entity(e).build();
+		}
+
+		return Response.status(200).build();
+
+	}
+	
 }
