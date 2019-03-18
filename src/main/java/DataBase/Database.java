@@ -14,6 +14,7 @@ public class Database {
 		 private static final String USER = "APP"; // fonctionne pas	
 		 private static final String PASSWORD = "123"; // fonctionne pas
 		 private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver"; // test
+
 		 
 		 static {
 			 try {

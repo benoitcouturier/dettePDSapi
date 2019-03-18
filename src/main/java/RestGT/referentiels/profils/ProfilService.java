@@ -1,5 +1,4 @@
 package RestGT.referentiels.profils;
-
 import DAO.referentiels.profilsConsommateur.ProfilDAO;
 import Entites.portail.gererSonCompteClient.Customer_account;
 import Entites.referentiels.profilsConsommateur.Profil;
