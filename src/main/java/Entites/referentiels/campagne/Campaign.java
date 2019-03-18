@@ -66,9 +66,7 @@ public class Campaign {
 	public void setListProduct(ArrayList<Product> listProduct) {
 		this.listProduct = listProduct;
 	}
-	public Campaign() {
-		super();
-	}
+	public Campaign() { }
 	public Campaign(int idCampaign, String nameCampaign, String typeCampaign, Date startdateCampaign,
 			Date enddateCampaign) {
 		super();
@@ -88,6 +86,11 @@ public class Campaign {
 		this.listMagasin = listMagasin;
 		this.listProfil = listProfil;
 		this.listProduct = listProduct;
+	}
+	
+	public Campaign(ArrayList<Magasin> listMagasin) {
+		super();
+		this.listMagasin = listMagasin;
 	}
 	
 }
