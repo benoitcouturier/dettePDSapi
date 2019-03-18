@@ -7,7 +7,7 @@ public enum TypeCampaign {
 
 	private String type;
 	
-	private TypeCampaign(String type) {
+	TypeCampaign(String type) {
         this.type = type;
     }
 

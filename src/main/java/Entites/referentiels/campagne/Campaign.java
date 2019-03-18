@@ -1,6 +1,11 @@
 package Entites.referentiels.campagne;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import Entites.referentiels.magasins.Magasin;
+import Entites.referentiels.produitsVendus.Product;
+import Entites.referentiels.profilsConsommateur.Profil;
 
 public class Campaign {
 
@@ -9,6 +14,9 @@ public class Campaign {
 	private TypeCampaign typeCampaign;
 	private Date startdateCampaign;
 	private Date enddateCampaign;
+	private ArrayList <Magasin> listMagasin;
+	private ArrayList <Profil> listProfil;
+	private ArrayList <Product> listProduct;
 	
 	public int getIdCampaign() {
 		return idCampaign;
@@ -40,6 +48,24 @@ public class Campaign {
 	public void setEnddateCampaign(Date enddateCampaign) {
 		this.enddateCampaign = enddateCampaign;
 	}
+	public ArrayList<Magasin> getListMagasin() {
+		return listMagasin;
+	}
+	public void setListMagasin(ArrayList<Magasin> listMagasin) {
+		this.listMagasin = listMagasin;
+	}
+	public ArrayList<Profil> getListProfil() {
+		return listProfil;
+	}
+	public void setListProfil(ArrayList<Profil> listProfil) {
+		this.listProfil = listProfil;
+	}
+	public ArrayList<Product> getListProduct() {
+		return listProduct;
+	}
+	public void setListProduct(ArrayList<Product> listProduct) {
+		this.listProduct = listProduct;
+	}
 	public Campaign() {
 		super();
 	}
@@ -52,4 +78,23 @@ public class Campaign {
 		this.startdateCampaign = startdateCampaign;
 		this.enddateCampaign = enddateCampaign;
 	}
+	public Campaign(String nameCampaign, TypeCampaign typeCampaign, Date startdateCampaign, Date enddateCampaign,
+			ArrayList<Magasin> listMagasin, ArrayList<Profil> listProfil, ArrayList<Product> listProduct) {
+		super();
+		this.nameCampaign = nameCampaign;
+		this.typeCampaign = typeCampaign;
+		this.startdateCampaign = startdateCampaign;
+		this.enddateCampaign = enddateCampaign;
+		this.listMagasin = listMagasin;
+		this.listProfil = listProfil;
+		this.listProduct = listProduct;
+	}
+	
+	public boolean isNull (){
+		if (nameCampaign == null || typeCampaign == null || startdateCampaign == null || enddateCampaign == null) {
+			return true;
+		}
+		return false;
+	}
+	
 }

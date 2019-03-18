@@ -1,4 +1,4 @@
-package DAO.referentiels.administrateur.campagne;
+package DAO.referentiels.campagne;
 
 import DAO.CrudDAO;
 
