@@ -13,7 +13,7 @@ public class Database {
 		 private static final String URL = "jdbc:mysql://192.168.20.3:3306/databaseSql";// mysql 3306 postgre 5432 // changer ICI pour bdd
 		 private static final String USER = "APP"; // fonctionne pas	
 		 private static final String PASSWORD = "123"; // fonctionne pas
-		 private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+		 private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver"; // test
 		 
 		 static {
 			 try {
