@@ -39,9 +39,9 @@ public class FrequentationApiRest {
     @GET
     @Path("/mockFrequentation")
     @Produces("application/json")
-    public Response mockUser() {
+    public Response mockFrequentation() {
         init();
-        log.info("Methode MockUser");
+        log.info("Methode MockFrequentation");
         FrequentationDAO<Frequentation> fDAO = new FrequentationDAOImpl();
         try {
             return service.mockFrequentation(fDAO);
