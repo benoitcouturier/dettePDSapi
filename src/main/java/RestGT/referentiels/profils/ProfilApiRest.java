@@ -8,6 +8,8 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,9 +31,18 @@ public class ProfilApiRest {
     @Path("/tous")
     @Produces("application/json")
     public Response get() {
-        init();
-        log.info("Methode GET");
-        return null;
+        ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
+        ObjectMapper mapper = new ObjectMapper();
+        String response = new String();
+        System.out.println("ok");
+        try{
+            ArrayList<Profil> p = pDAO.read();
+            response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(p);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.status(200).entity(response).build();
     }
     
 

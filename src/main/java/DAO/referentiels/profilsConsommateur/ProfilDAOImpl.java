@@ -42,19 +42,27 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 
         Connection connect;
         PreparedStatement st;
-
+        ResultSet rs;
+        ArrayList<Profil> profils = new ArrayList<Profil>();
         try {
 
             connect= Database.getConnection();
             String sql = "SELECT* FROM profil_type";
             st = connect.prepareStatement(sql);
-            st.executeUpdate();
+            rs =  st.executeQuery();
+            while(rs.next()) {
+            	Profil profil = new Profil();
+                profil.setNumProfil(rs.getInt("numProfil"));
+                profil.setNomProfil(rs.getString("nomProfil"));
+                profils.add(profil);                
+            }
+            
 
         } catch(SQLException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return profils;
     }
 
     @Override
