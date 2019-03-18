@@ -187,7 +187,7 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "Select ID, id_profil,customer_sex from Customer_account";
+			String sql = "Select distinct(ID),customer_sex,id_profil,P.nomProfil from Customer_account C left join profil_type P on P.numProfil = C.id_profil;";
 			ps = connect.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -196,6 +196,7 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 				c.setId_customer(rs.getInt("ID"));
 				c.setCustomer_sex(rs.getString("customer_sex"));
 				c.setId_profil(rs.getInt("id_profil"));
+				c.setCustomer_preferences(rs.getString("nomProfil"));
 
 				customer.add(c);
 			}
