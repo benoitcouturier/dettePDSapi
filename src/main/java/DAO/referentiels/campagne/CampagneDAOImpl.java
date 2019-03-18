@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import DataBase.Database;
 import Entites.referentiels.campagne.Campaign;
-import Entites.referentiels.campagne.TypeCampaign;
 import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
 
@@ -32,8 +31,6 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			st.setDate(4, campagne.getEnddateCampaign());
 			st.executeUpdate();
 
-			connect.commit();
-
 			/* Récupérer l'id de la campagne provenant de l'autoincrement */
 
 			sql = "Select LAST_INSERT_ID() ID";
@@ -46,23 +43,22 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 
 			/* Insérer la liste de magasin dans la table CampaignStore */
 
-			for (int i=0; i < campagne.getListMagasin().size(); i++) {
+			for (int i=0; i < campagne.getListMagasinId().size(); i++) {
 				sql = "INSERT INTO CampaignStore VALUES (NULL,?,?)";
 				st = connect.prepareStatement(sql);
 				st.setInt(1,idCampaign);
-				st.setInt(2, campagne.getListMagasin().get(i).getId());
+				st.setInt(2, campagne.getListMagasinId().get(i));
 				st.executeUpdate();
 
-				connect.commit();
 			}
 			
 			/* Insérer la liste de produits dans la table CampaignProduct */
 
-			for (int i=0; i < campagne.getListProduct().size(); i++) {
+			for (int i=0; i < campagne.getListProductId().size(); i++) {
 				sql = "INSERT INTO CampaignProduct VALUES (NULL,?,?)";
 				st = connect.prepareStatement(sql);
 				st.setInt(1,idCampaign);
-				st.setInt(2, campagne.getListProduct().get(i).getPid());
+				st.setInt(2, campagne.getListProductId().get(i));
 				st.executeUpdate();
 
 				connect.commit();
@@ -70,11 +66,11 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			
 			/* Insérer la liste des profils dans la table CampaignTargetedProfile */
 
-			for (int i=0; i < campagne.getListProfil().size(); i++) {
+			for (int i=0; i < campagne.getListProfilId().size(); i++) {
 				sql = "INSERT INTO CampaignTargetedProfile VALUES (NULL,?,?)";
 				st = connect.prepareStatement(sql);
 				st.setInt(1,idCampaign);
-				st.setInt(2, campagne.getListProfil().get(i).getNumProfil());
+				st.setInt(2, campagne.getListProfilId().get(i));
 				st.executeUpdate();
 
 				connect.commit();
@@ -178,7 +174,6 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 
 	        for (int i=0; i<= 100; i++) {
 	        	PreparedStatement st;
-		        ResultSet rs;
 	     
 	            try {
 	                String sql = 
