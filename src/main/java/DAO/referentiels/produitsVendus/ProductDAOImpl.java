@@ -62,11 +62,11 @@ public class ProductDAOImpl implements ProductDAO<Product> {
 			Connection connect;
 			PreparedStatement ps ;
 			ResultSet myRs;
-			Product p = new Product();
+			Product p = new Product();			
 			try {
 				int i =1;
 				connect = Database.getConnection();
-				String sql = "Select * from Product where prods_id=1 and id=?";
+				String sql = "Select * from Product P, Magasins M where P.store_id=M.id AND P.prods_id=1 and P.product_id=?";
 				ps = connect.prepareStatement(sql);
 				ps.setInt(i++, object.getPid());
 				myRs = ps.executeQuery();
