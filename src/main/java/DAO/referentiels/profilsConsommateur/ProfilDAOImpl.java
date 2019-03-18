@@ -143,6 +143,7 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 			System.out.println(sql);
 			st = connect.prepareStatement(sql);
 			st.executeUpdate();
+			connect.commit();
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -186,7 +187,7 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 		try {
 			int i =1;
 			connect = Database.getConnection();
-			String sql = "Select ID, id_profil,customer_sex from Customer_account ";
+			String sql = "Select ID, id_profil,customer_sex from Customer_account";
 			ps = connect.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
