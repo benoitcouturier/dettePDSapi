@@ -104,4 +104,18 @@ public class ProfilApiRest {
         }
     }
     
+    @GET
+    @Path("/getClientProfil")
+    @Produces("application/json")
+    public Response getClientProfil() {
+        init();
+        ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
+        try {
+        	return service.getClientProfil(pDAO);
+        	
+        }catch(Exception e) {
+        	return Response.status(500).entity(e).build();
+        }
+    }
+    
 }

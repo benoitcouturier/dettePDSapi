@@ -177,4 +177,32 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 		return customer;
 	}
 
+	@Override
+	public ArrayList<Customer_account> getClientProfil() throws Exception {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		ArrayList<Customer_account> customer = new ArrayList<Customer_account>();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select ID, id_profil,customer_sex from Customer_account ";
+			ps = connect.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Customer_account c = new Customer_account();
+				
+				c.setId_customer(rs.getInt("ID"));
+				c.setCustomer_sex(rs.getString("customer_sex"));
+				c.setId_profil(rs.getInt("id_profil"));
+
+				customer.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
+	}
+
 }
