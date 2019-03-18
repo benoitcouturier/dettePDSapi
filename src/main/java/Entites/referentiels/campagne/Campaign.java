@@ -84,13 +84,10 @@ public class Campaign {
 	public void setListProduct(ArrayList<Product> listProduct) {
 		this.listProduct = listProduct;
 	}
-<<<<<<< HEAD
 	public Campaign() {
 		super();
 	}
-=======
-	public Campaign() { }
->>>>>>> lancer_une_campagne_de_suggestion_dachats
+
 	public Campaign(int idCampaign, String nameCampaign, String typeCampaign, Date startdateCampaign,
 			Date enddateCampaign) {
 		super();
@@ -112,8 +109,7 @@ public class Campaign {
 		this.listProduct = listProduct;
 	}
 	
-<<<<<<< HEAD
-=======
+
 	public Campaign(ArrayList<Magasin> listMagasin) {
 		super();
 		this.listMagasin = listMagasin;
@@ -136,6 +132,5 @@ public class Campaign {
 	public void setListProductId(ArrayList<Integer> listProductId) {
 		this.listProductId = listProductId;
 	}
-	
->>>>>>> lancer_une_campagne_de_suggestion_dachats
+
 }

@@ -101,10 +101,6 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			
 			while(rs.next()) {
 				Campaign campaign = new Campaign();
-<<<<<<< HEAD
-=======
-				
->>>>>>> lancer_une_campagne_de_suggestion_dachats
 				campaign.setIdCampaign(rs.getInt("idCampaign"));
 				campaign.setTypeCampaign(rs.getString("typeCampaign"));
 				campaign.setNameCampaign(rs.getString("nameCampaign"));
