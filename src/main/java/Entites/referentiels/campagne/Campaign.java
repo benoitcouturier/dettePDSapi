@@ -90,11 +90,4 @@ public class Campaign {
 		this.listProduct = listProduct;
 	}
 	
-	public boolean isNull (){
-		if (nameCampaign == null || typeCampaign == null || startdateCampaign == null || enddateCampaign == null) {
-			return true;
-		}
-		return false;
-	}
-	
 }

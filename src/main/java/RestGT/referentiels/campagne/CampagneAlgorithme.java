@@ -14,7 +14,7 @@ public class CampagneAlgorithme {
 		
 		CampagneDAOImpl campagneDAO = new CampagneDAOImpl();
 		
-		if (campagne.isNull() == false) {
+		if (isNull(campagne) == false) {
 			
 			/*  
 			 * Champ magasin non renseigné
@@ -40,7 +40,7 @@ public class CampagneAlgorithme {
 			 * 
 			 * */
 			
-			if (campagne.getTypeCampaign().getType() == "general") {
+			if (campagne.getTypeCampaign() == "general") {
 				campagne.setListProduct(new ArrayList<Product>());
 				campagne.setListMagasin(new ArrayList<Magasin>());
 				campagne.setListProfil(new ArrayList<Profil>());
@@ -49,5 +49,11 @@ public class CampagneAlgorithme {
 			
 		}
 		return null;
+	}
+	public boolean isNull (Campaign campagne){
+		if (campagne.getNameCampaign() == null || campagne.getTypeCampaign() == null || campagne.getStartdateCampaign() == null || campagne.getEnddateCampaign() == null) {
+			return true;
+		}
+		return false;
 	}
 }
