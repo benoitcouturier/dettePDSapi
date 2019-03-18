@@ -167,5 +167,29 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 		}
 		return magasins;
 	}
+	
+	@Override
+	public void mockCampagne() throws Exception {
+		// TODO Auto-generated method stub
 
+	        Connection connect;
+	        connect = Database.getConnection();
+            
+
+	        for (int i=0; i<= 100; i++) {
+	        	PreparedStatement st;
+		        ResultSet rs;
+	     
+	            try {
+	                String sql = 
+  		"INSERT INTO Person(person_name,person_firstname,person_login,person_password) SELECT(case( FLOOR( RAND()*3 )) WHEN 0 THEN 'user1' WHEN 1 THEN 'user2' WHEN 2 THEN 'user3'END) AS person_name,(FLOOR(RAND()*100)),(FLOOR(RAND()*100)),(FLOOR(RAND()*100))FROM seq_1_to_10;";                 
+	                System.out.println(sql);
+	                st = connect.prepareStatement(sql);
+	                st.executeUpdate();
+	            } catch (SQLException e) {
+
+	                e.printStackTrace();
+	            }
+	        }
+	    }
 }

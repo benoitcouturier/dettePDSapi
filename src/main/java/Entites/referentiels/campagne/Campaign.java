@@ -18,6 +18,24 @@ public class Campaign {
 	private ArrayList <Profil> listProfil;
 	private ArrayList <Product> listProduct;
 	
+	private ArrayList <Integer> listMagasinId;
+	private ArrayList <Integer> listProfilId;
+	private ArrayList <Integer> listProductId;
+	
+	public Campaign(int idCampaign, String nameCampaign, String typeCampaign, Date startdateCampaign,
+			Date enddateCampaign, ArrayList<Integer> listMagasinId, ArrayList<Integer> listProfilId,
+			ArrayList<Integer> listProductId) {
+		super();
+		this.idCampaign = idCampaign;
+		this.nameCampaign = nameCampaign;
+		this.typeCampaign = typeCampaign;
+		this.startdateCampaign = startdateCampaign;
+		this.enddateCampaign = enddateCampaign;
+		this.listMagasinId = listMagasinId;
+		this.listProfilId = listProfilId;
+		this.listProductId = listProductId;
+	}
+	
 	public int getIdCampaign() {
 		return idCampaign;
 	}
@@ -91,6 +109,24 @@ public class Campaign {
 	public Campaign(ArrayList<Magasin> listMagasin) {
 		super();
 		this.listMagasin = listMagasin;
+	}
+	public ArrayList<Integer> getListMagasinId() {
+		return listMagasinId;
+	}
+	public void setListMagasinId(ArrayList<Integer> listMagasinId) {
+		this.listMagasinId = listMagasinId;
+	}
+	public ArrayList<Integer> getListProfilId() {
+		return listProfilId;
+	}
+	public void setListProfilId(ArrayList<Integer> listProfilId) {
+		this.listProfilId = listProfilId;
+	}
+	public ArrayList<Integer> getListProductId() {
+		return listProductId;
+	}
+	public void setListProductId(ArrayList<Integer> listProductId) {
+		this.listProductId = listProductId;
 	}
 	
 }
