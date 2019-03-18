@@ -73,8 +73,7 @@ public class ProfilApiRest {
         }
         return Response.status(200).entity(response).build();
     }
-    
-    
+
     @GET
     @Path("/mockAchats")
     @Produces("application/json")
@@ -83,11 +82,12 @@ public class ProfilApiRest {
         log.info("Methode MockUser");
         ProfilDAO<Profil> pDAO = new ProfilDAOImpl();
         try {
-        	return service.mockAchats(pDAO);
-        	
+            return service.mockAchats(pDAO);
+
         }catch(Exception e) {
-        	return Response.status(500).entity(e).build();
+            return Response.status(500).entity(e).build();
         }
     }
+
 
 }
