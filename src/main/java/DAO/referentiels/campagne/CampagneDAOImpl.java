@@ -10,6 +10,7 @@ import DataBase.Database;
 import Entites.referentiels.campagne.Campaign;
 import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
+import Entites.referentiels.profilsConsommateur.Profil;
 
 public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 	@Override
@@ -100,12 +101,13 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			
 			while(rs.next()) {
 				Campaign campaign = new Campaign();
+				
 				campaign.setIdCampaign(rs.getInt("idCampaign"));
 				campaign.setTypeCampaign(rs.getString("typeCampaign"));
 				campaign.setNameCampaign(rs.getString("nameCampaign"));
 				campaign.setStartdateCampaign(rs.getDate("startdateCampaign"));
 				campaign.setEnddateCampaign(rs.getDate("enddateCampaign"));
-
+				
 				listCampaign.add(campaign);
 			}
 
