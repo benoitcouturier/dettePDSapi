@@ -27,7 +27,7 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			String sql = "INSERT IGNORE INTO Campaign VALUES (NULL,?,?,?,?)";
 			st = connect.prepareStatement(sql);
 			st.setString(1,campagne.getNameCampaign());
-			st.setString(2, campagne.getTypeCampaign().getType());
+			st.setString(2, campagne.getTypeCampaign());
 			st.setDate(3, campagne.getStartdateCampaign());
 			st.setDate(4, campagne.getEnddateCampaign());
 			st.executeUpdate();
@@ -98,15 +98,14 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			
 			connect = Database.getConnection();
 			
-			String sql = "Select * from Magasins";
+			String sql = "Select * from Campaign";
 			ps = connect.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				Campaign campaign = new Campaign();
-				TypeCampaign typeCampaign = TypeCampaign.valueOf(rs.getString("typeCampaign"));
 				campaign.setIdCampaign(rs.getInt("idCampaign"));
-				campaign.setTypeCampaign(typeCampaign);
+				campaign.setTypeCampaign(rs.getString("typeCampaign"));
 				campaign.setNameCampaign(rs.getString("nameCampaign"));
 				campaign.setStartdateCampaign(rs.getDate("startdateCampaign"));
 				campaign.setEnddateCampaign(rs.getDate("enddateCampaign"));

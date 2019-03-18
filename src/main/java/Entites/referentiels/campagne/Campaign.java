@@ -11,7 +11,7 @@ public class Campaign {
 
 	private int idCampaign;
 	private String nameCampaign;
-	private TypeCampaign typeCampaign;
+	private String typeCampaign;
 	private Date startdateCampaign;
 	private Date enddateCampaign;
 	private ArrayList <Magasin> listMagasin;
@@ -30,10 +30,10 @@ public class Campaign {
 	public void setNameCampaign(String nameCampaign) {
 		this.nameCampaign = nameCampaign;
 	}
-	public TypeCampaign getTypeCampaign() {
+	public String getTypeCampaign() {
 		return typeCampaign;
 	}
-	public void setTypeCampaign(TypeCampaign typeCampaign) {
+	public void setTypeCampaign(String typeCampaign) {
 		this.typeCampaign = typeCampaign;
 	}
 	public Date getStartdateCampaign() {
@@ -69,7 +69,7 @@ public class Campaign {
 	public Campaign() {
 		super();
 	}
-	public Campaign(int idCampaign, String nameCampaign, TypeCampaign typeCampaign, Date startdateCampaign,
+	public Campaign(int idCampaign, String nameCampaign, String typeCampaign, Date startdateCampaign,
 			Date enddateCampaign) {
 		super();
 		this.idCampaign = idCampaign;
@@ -78,7 +78,7 @@ public class Campaign {
 		this.startdateCampaign = startdateCampaign;
 		this.enddateCampaign = enddateCampaign;
 	}
-	public Campaign(String nameCampaign, TypeCampaign typeCampaign, Date startdateCampaign, Date enddateCampaign,
+	public Campaign(String nameCampaign, String typeCampaign, Date startdateCampaign, Date enddateCampaign,
 			ArrayList<Magasin> listMagasin, ArrayList<Profil> listProfil, ArrayList<Product> listProduct) {
 		super();
 		this.nameCampaign = nameCampaign;
@@ -88,13 +88,6 @@ public class Campaign {
 		this.listMagasin = listMagasin;
 		this.listProfil = listProfil;
 		this.listProduct = listProduct;
-	}
-	
-	public boolean isNull (){
-		if (nameCampaign == null || typeCampaign == null || startdateCampaign == null || enddateCampaign == null) {
-			return true;
-		}
-		return false;
 	}
 	
 }
