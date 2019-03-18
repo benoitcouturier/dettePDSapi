@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import DataBase.Database;
 import Entites.referentiels.campagne.Campaign;
-import Entites.referentiels.campagne.TypeCampaign;
 import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.produitsVendus.Product;
+import Entites.referentiels.profilsConsommateur.Profil;
 
 public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 	@Override
@@ -32,8 +32,6 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			st.setDate(4, campagne.getEnddateCampaign());
 			st.executeUpdate();
 
-			connect.commit();
-
 			/* Récupérer l'id de la campagne provenant de l'autoincrement */
 
 			sql = "Select LAST_INSERT_ID() ID";
@@ -46,23 +44,22 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 
 			/* Insérer la liste de magasin dans la table CampaignStore */
 
-			for (int i=0; i < campagne.getListMagasin().size(); i++) {
+			for (int i=0; i < campagne.getListMagasinId().size(); i++) {
 				sql = "INSERT INTO CampaignStore VALUES (NULL,?,?)";
 				st = connect.prepareStatement(sql);
 				st.setInt(1,idCampaign);
-				st.setInt(2, campagne.getListMagasin().get(i).getId());
+				st.setInt(2, campagne.getListMagasinId().get(i));
 				st.executeUpdate();
 
-				connect.commit();
 			}
 			
 			/* Insérer la liste de produits dans la table CampaignProduct */
 
-			for (int i=0; i < campagne.getListProduct().size(); i++) {
+			for (int i=0; i < campagne.getListProductId().size(); i++) {
 				sql = "INSERT INTO CampaignProduct VALUES (NULL,?,?)";
 				st = connect.prepareStatement(sql);
 				st.setInt(1,idCampaign);
-				st.setInt(2, campagne.getListProduct().get(i).getPid());
+				st.setInt(2, campagne.getListProductId().get(i));
 				st.executeUpdate();
 
 				connect.commit();
@@ -70,11 +67,11 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			
 			/* Insérer la liste des profils dans la table CampaignTargetedProfile */
 
-			for (int i=0; i < campagne.getListProfil().size(); i++) {
+			for (int i=0; i < campagne.getListProfilId().size(); i++) {
 				sql = "INSERT INTO CampaignTargetedProfile VALUES (NULL,?,?)";
 				st = connect.prepareStatement(sql);
 				st.setInt(1,idCampaign);
-				st.setInt(2, campagne.getListProfil().get(i).getNumProfil());
+				st.setInt(2, campagne.getListProfilId().get(i));
 				st.executeUpdate();
 
 				connect.commit();
@@ -104,12 +101,16 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 			
 			while(rs.next()) {
 				Campaign campaign = new Campaign();
+<<<<<<< HEAD
+=======
+				
+>>>>>>> lancer_une_campagne_de_suggestion_dachats
 				campaign.setIdCampaign(rs.getInt("idCampaign"));
 				campaign.setTypeCampaign(rs.getString("typeCampaign"));
 				campaign.setNameCampaign(rs.getString("nameCampaign"));
 				campaign.setStartdateCampaign(rs.getDate("startdateCampaign"));
 				campaign.setEnddateCampaign(rs.getDate("enddateCampaign"));
-
+				
 				listCampaign.add(campaign);
 			}
 
@@ -167,5 +168,28 @@ public class CampagneDAOImpl implements CampagneDAO<Campaign>  {
 		}
 		return magasins;
 	}
+	
+	@Override
+	public void mockCampagne() throws Exception {
+		// TODO Auto-generated method stub
 
+	        Connection connect;
+	        connect = Database.getConnection();
+            
+
+	        for (int i=0; i<= 100; i++) {
+	        	PreparedStatement st;
+	     
+	            try {
+	                String sql = 
+  		"INSERT INTO Person(person_name,person_firstname,person_login,person_password) SELECT(case( FLOOR( RAND()*3 )) WHEN 0 THEN 'user1' WHEN 1 THEN 'user2' WHEN 2 THEN 'user3'END) AS person_name,(FLOOR(RAND()*100)),(FLOOR(RAND()*100)),(FLOOR(RAND()*100))FROM seq_1_to_10;";                 
+	                System.out.println(sql);
+	                st = connect.prepareStatement(sql);
+	                st.executeUpdate();
+	            } catch (SQLException e) {
+
+	                e.printStackTrace();
+	            }
+	        }
+	    }
 }

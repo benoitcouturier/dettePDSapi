@@ -19,12 +19,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 import DAO.referentiels.campagne.CampagneDAOImpl;
 import DAO.referentiels.campagne.CampagneDAO;
 import Entites.referentiels.campagne.Campaign;
+import Entites.referentiels.produitsVendus.Product;
 
 
 @Path("/Campagne")
 public class CampagneApiRest {
 
 	private static final Logger log = Logger.getLogger(CampagneApiRest.class);
+	private  CampagneService service = new CampagneService();
 
 	public static void init() {
 		if (log.getLevel() == null) {
@@ -62,11 +64,12 @@ public class CampagneApiRest {
 		ObjectMapper mapper = new ObjectMapper();
 		String response = new String();
 		try {
+			System.out.println(c);
 			Campaign campagne = mapper.readValue(c, Campaign.class);
 			algo.CampagneTraitement(campagne);
 			campagneDAO.create(campagne);
 			String res = "Nouvelle campagne créée : "+campagne.getIdCampaign()+" "+campagne.getNameCampaign(); 
-			log.info(res);
+			log.info(res); 
 			response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,4 +79,19 @@ public class CampagneApiRest {
 
 		return Response.status(200).entity(response).build();
 	}
+	@GET
+    @Path("/mockCampagne")
+    @Produces("application/json")
+    
+    public Response mockUser() {
+        init();
+        log.info("Methode MockUser");
+        CampagneDAO<Campaign> fDAO = new CampagneDAOImpl();
+        try {
+            return service.mockCampagne(fDAO);
+
+        }catch(Exception e) {
+            return Response.status(500).entity(e).build();
+        }
+    }
 }
