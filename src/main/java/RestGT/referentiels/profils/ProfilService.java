@@ -1,7 +1,10 @@
 package RestGT.referentiels.profils;
 
 import DAO.referentiels.profilsConsommateur.ProfilDAO;
+import Entites.portail.gererSonCompteClient.Customer_account;
 import Entites.referentiels.profilsConsommateur.Profil;
+
+import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
@@ -40,7 +43,23 @@ public class ProfilService {
 		String response = new String();
 		System.out.println("ok");
 		try {
-			//dao.create(profil);
+			//Select des Customer avec l'id profil a null
+			ArrayList<Customer_account> customers = dao.getProfilNull();
+			//Actualisation de ces Profils en fonction de leur Sexe
+			for(int i = 0; i<customers.size() ; i++) {
+				if(customers.get(i).getCustomer_sex().equalsIgnoreCase("Male")) {
+					dao.updateProfilClient(13, customers.get(i).getId_customer());
+				}else {
+					dao.updateProfilClient(12, customers.get(i).getId_customer());
+				}
+			}
+			//Selection de tous les customer et de leur ligne de commande
+			
+			// Moyenne des prix * qte / nbTotal = Un type de profil
+			
+			// INsertion de ces Profils.
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

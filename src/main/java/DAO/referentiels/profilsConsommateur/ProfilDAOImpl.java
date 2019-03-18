@@ -1,5 +1,7 @@
 package DAO.referentiels.profilsConsommateur;
 import DataBase.Database;
+import Entites.portail.gererSonCompteClient.Customer_account;
+import Entites.referentiels.magasins.Magasin;
 import Entites.referentiels.profilsConsommateur.Profil;
 
 import java.sql.Connection;
@@ -128,6 +130,51 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 				e.printStackTrace();
 			}	
 		}
+	}
+
+	@Override
+	public void updateProfilClient(int idProfil, int idClient) throws Exception {
+		Connection connect;
+		PreparedStatement st;
+		ResultSet rs;
+		try {
+			connect= Database.getConnection();
+			String sql= "Update Customer_account set id_profil="+idProfil+" where ID="+idClient+" ";
+			System.out.println(sql);
+			st = connect.prepareStatement(sql);
+			st.executeUpdate();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}	
+	}
+
+	@Override
+	public ArrayList<Customer_account> getProfilNull() throws Exception {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		ArrayList<Customer_account> customer = new ArrayList<Customer_account>();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select ID, id_profil,customer_sex from Customer_account where id_profil is null";
+			ps = connect.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Customer_account c = new Customer_account();
+				
+				c.setId_customer(rs.getInt("ID"));
+				c.setCustomer_sex(rs.getString("customer_sex"));
+				c.setId_profil(rs.getInt("id_profil"));
+
+				customer.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
 	}
 
 }

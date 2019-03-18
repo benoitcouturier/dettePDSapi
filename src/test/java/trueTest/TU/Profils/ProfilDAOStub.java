@@ -1,6 +1,7 @@
 package trueTest.TU.Profils;
 
 import DAO.referentiels.profilsConsommateur.ProfilDAO;
+import Entites.portail.gererSonCompteClient.Customer_account;
 import Entites.referentiels.profilsConsommateur.Profil;
 
 import java.util.ArrayList;
@@ -41,6 +42,18 @@ public class ProfilDAOStub implements ProfilDAO<Profil> {
 	public void mockAchats() throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void updateProfilClient(int idProfil, int idClient) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Customer_account> getProfilNull() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
