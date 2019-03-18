@@ -66,7 +66,7 @@ public class CampagneApiRest {
 			algo.CampagneTraitement(campagne);
 			campagneDAO.create(campagne);
 			String res = "Nouvelle campagne créée : "+campagne.getIdCampaign()+" "+campagne.getNameCampaign(); 
-			log.info(res);
+			log.info(res); 
 			response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
 		} catch (Exception e) {
 			e.printStackTrace();
