@@ -10,12 +10,12 @@ public class Frequentation {
         this.idFrequentation = idFrequentation;
     }
 
-    public int getIdPortique() {
-        return idPortique;
+    public int getIdMagasin() {
+        return idMagasin;
     }
 
-    public void setIdPortique(int idPortique) {
-        this.idPortique = idPortique;
+    public void setIdMagasin(int idMagasin) {
+        this.idMagasin = idMagasin;
     }
 
     public int getIdClient() {
@@ -35,7 +35,7 @@ public class Frequentation {
     }
 
     private int idFrequentation;
-    private int idPortique;
+    private int idMagasin;
     private int idClient;
     private String entryDate;
 

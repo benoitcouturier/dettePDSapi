@@ -19,7 +19,7 @@ public class FrequentationDAOImpl<Frequentation> implements FrequentationDAO{
             connect = Database.getConnection();
 
             try {
-                String sql = "INSERT INTO FrequentationMagasin (idFrequentation, idPortique, idClient, entryDate) values ((FLOOR(RAND()*25)), (FLOOR(RAND()*25)), (FLOOR(RAND()*25)), null);";
+                String sql = "INSERT INTO FrequentationMagasin (idFrequentation, idMagasin, idClient, entryDate) values ((FLOOR(RAND()*25)), (FLOOR(RAND()*25)), (FLOOR(RAND()*25)), null);";
                 System.out.println(sql);
                 st = connect.prepareStatement(sql);
                 st.executeUpdate();
