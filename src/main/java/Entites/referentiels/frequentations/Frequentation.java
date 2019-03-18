@@ -1,4 +1,5 @@
 package Entites.referentiels.frequentations;
+import java.util.Date;
 
 public class Frequentation {
 
@@ -26,17 +27,17 @@ public class Frequentation {
         this.idClient = idClient;
     }
 
-    public String getEntryDate() {
-        return entryDate;
+    public Date getDateEntree() {
+        return dateEntree;
     }
 
-    public void setEntryDate(String entryDate) {
-        this.entryDate = entryDate;
+    public void setdateEntree(Date dateEntree) {
+        this.dateEntree = dateEntree;
     }
 
     private int idFrequentation;
     private int idMagasin;
     private int idClient;
-    private String entryDate;
+    private Date dateEntree;
 
 }

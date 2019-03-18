@@ -9,7 +9,7 @@ public class Database {
 	// firewall 192.168.20.3
 	/*Integration : 10.10.2.2*/
 	/* localhost:3306 databaseSql APP 123  ajout*/
-		 private static final String URL = "jdbc:mysql://localhost:3306/databaseSql";// mysql 3306 postgre 5432 // changer ICI pour bdd
+		 private static final String URL = "jdbc:mysql://localhost:3306/mockDatabase";// mysql 3306 postgre 5432 // changer ICI pour bdd
 		 private static final String USER = "APP";
 		 private static final String PASSWORD = "123";
 		 private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";

@@ -11,15 +11,16 @@ public class FrequentationDAOImpl<Frequentation> implements FrequentationDAO{
 
     public void mockFrequentation() throws Exception {
         Connection connect;
-        PreparedStatement st;
-        ResultSet rs;
 
+        connect = Database.getConnection();
         for (int i=0; i<= 10000; i++) {
 
-            connect = Database.getConnection();
+            PreparedStatement st;
+            ResultSet rs;
+
 
             try {
-                String sql = "INSERT INTO FrequentationMagasin (idFrequentation, idMagasin, idClient, entryDate) values ((FLOOR(RAND()*25)), (FLOOR(RAND()*25)), (FLOOR(RAND()*25)), null);";
+                String sql = "INSERT INTO FrequentationMagasin (idFrequentation, idMagasin, idClient, dateEntree) values (null, (FLOOR(RAND()*25)), (FLOOR(RAND()*25)), null);";
                 System.out.println(sql);
                 st = connect.prepareStatement(sql);
                 st.executeUpdate();
