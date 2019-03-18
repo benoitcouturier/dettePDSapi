@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 public class ProfilService {
 
 	public Response create(Profil profil, ProfilDAO<Profil> dao) {
@@ -66,7 +68,24 @@ public class ProfilService {
 			return Response.status(500).entity(e).build();
 		}
 
-		return Response.status(200).build();
+		return Response.status(200).entity("Done").build();
+
+	}
+	
+	public Response getClientProfil(ProfilDAO<Profil> dao) {
+		String response = new String();
+		System.out.println("ok");
+		try {
+			String res = new String();
+			ObjectMapper mapper = new ObjectMapper();
+			ArrayList<Customer_account> customers = dao.getClientProfil();
+			res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(customers);
+			return Response.status(200).entity(res).build();		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(500).entity(e).build();
+		}
 
 	}
 	

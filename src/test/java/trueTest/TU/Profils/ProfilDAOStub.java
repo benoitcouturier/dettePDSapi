@@ -56,4 +56,10 @@ public class ProfilDAOStub implements ProfilDAO<Profil> {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Customer_account> getClientProfil() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

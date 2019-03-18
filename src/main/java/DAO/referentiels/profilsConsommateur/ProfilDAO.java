@@ -10,4 +10,6 @@ public interface ProfilDAO<T> extends CrudDAO<T> {
 	public void mockAchats() throws Exception;
 	public void updateProfilClient( int idProfil, int idClient) throws Exception;
 	public ArrayList<Customer_account> getProfilNull() throws Exception;
+
+	public ArrayList<Customer_account> getClientProfil() throws Exception;
 }

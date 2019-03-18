@@ -143,6 +143,7 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 			System.out.println(sql);
 			st = connect.prepareStatement(sql);
 			st.executeUpdate();
+			connect.commit();
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -167,6 +168,35 @@ public class ProfilDAOImpl implements ProfilDAO<Profil> {
 				c.setId_customer(rs.getInt("ID"));
 				c.setCustomer_sex(rs.getString("customer_sex"));
 				c.setId_profil(rs.getInt("id_profil"));
+
+				customer.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
+	}
+
+	@Override
+	public ArrayList<Customer_account> getClientProfil() throws Exception {
+		Connection connect;
+		PreparedStatement ps ;
+		ResultSet rs;
+		ArrayList<Customer_account> customer = new ArrayList<Customer_account>();
+		try {
+			int i =1;
+			connect = Database.getConnection();
+			String sql = "Select distinct(ID),customer_sex,id_profil,P.nomProfil from Customer_account C left join profil_type P on P.numProfil = C.id_profil;";
+			ps = connect.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Customer_account c = new Customer_account();
+				
+				c.setId_customer(rs.getInt("ID"));
+				c.setCustomer_sex(rs.getString("customer_sex"));
+				c.setId_profil(rs.getInt("id_profil"));
+				c.setCustomer_preferences(rs.getString("nomProfil"));
 
 				customer.add(c);
 			}
