@@ -5,3 +5,5 @@ target
 *.classpath
 *.settings
 .DS_Store
+out
+out/*
